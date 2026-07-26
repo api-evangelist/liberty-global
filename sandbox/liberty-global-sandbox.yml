@@ -1,0 +1,82 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/README.md,
+  https://github.com/LibertyGlobal/appstore-bundle-service/blob/master/README.md,
+  https://github.com/LibertyGlobal/appstore-caching-service/blob/master/README.md
+mode: self-hosted-local
+hosted_sandbox: false
+summary: >-
+  There is no hosted sandbox, no test/live key separation and no console —
+  Liberty Global runs no gateway. What the provider does publish is a complete,
+  reproducible local stack: docker-compose for ASMS, docker run one-liners for
+  the bundle and caching services, and worked curl examples with default
+  credentials and sample payloads. That is the only way to exercise these APIs,
+  and it is fully documented. Everything below is copied from the provider's
+  own READMEs; nothing is invented.
+stack:
+- component: appstore-metadata-service
+  start: mvn clean install, then deploy the docker-compose stack at ./appstore-metadata-service/docker-compose
+  image: daccloud/appstore-metadata-service
+  local_base_urls:
+  - {url: 'http://localhost:8081/as3', perspective: Maintainer, via: AS3 Proxy}
+  - {url: 'http://localhost:8082/asms', perspective: STB, via: ASMS Proxy}
+- component: appstore-bundle-service
+  start: docker run --rm -d -p 8080:8080 --name appstore-bundle-service daccloud/appstore-bundle-service:latest
+  from_source: mvn clean package, then mvn spring-boot:run -pl appstore-bundle-service-application -P development
+  local_base_urls: ['http://localhost:8080', 'http://localhost:8081']
+  dependencies:
+  - {service: postgres, run: 'docker run --rm -d -p 5432:5432 -e "POSTGRES_HOST_AUTH_METHOD=trust" --name postgres postgres:12'}
+  - {service: rabbitmq, run: 'docker run --rm -d -p 5672:5672 --name rabbitmq rabbitmq:3.8.19-management-alpine'}
+  queues_to_declare: [bundlegen-service-requests, bundlegen-service-status, bundlecrypt-service-requests, bundlecrypt-service-status]
+- component: appstore-caching-service
+  start: docker run --rm -d -p 8080:8080 -name appstore-caching-service daccloud/appstore-caching-service:latest
+  image: daccloud/appstore-caching-service
+  local_base_url: 'http://localhost:8080'
+credentials:
+  scheme: HTTP Basic
+  published_defaults:
+  - {perspective: Maintainer, endpoint: 'http://localhost:8081/as3', user: as3, password: as3}
+  - {perspective: STB, endpoint: 'http://localhost:8082/asms', user: stb, password: stb}
+  note: >-
+    These are the local-development defaults the provider publishes verbatim in
+    the public README (as base64 Basic credentials in the sample curl calls).
+    They are development scaffolding for a stack you run yourself, not access
+    to anything of Liberty Global's. An operator deploying ASMS is expected to
+    replace them at the Nginx proxy tier.
+fixtures:
+  maintainer:
+    code: lgi
+    name: Liberty Global
+    address: Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands
+    homepage: https://www.libertyglobal.com
+    email: developer@libertyglobal.com
+    used_by: [createMaintainer, getMaintainer]
+  application:
+    id: demo.id.appl
+    version: '2.2'
+    name: FancyApp
+    type: fancy_applications
+    category: application
+    size: '10000000'
+    ociImageUrl: 'myregistry.local:5000/testing/test-image'
+    platform: {architecture: arm, variant: v1, os: linux}
+    used_by: [createMaintainerApplication]
+  search:
+    request: 'GET /asms/apps?name=Fancy&maintainerName=Liberty%20Global'
+    expects: 'one application, meta.resultSet {count: 1, offset: 0, limit: 10, total: 1}'
+    used_by: [listApplications]
+test_tooling:
+  integration_tests:
+  - {component: appstore-bundle-service, command: 'mvn clean verify -Pintegration-tests', note: runs against a mocked application}
+  - {component: appstore-bundle-service, command: 'mvn clean verify -Dci-stage=integration-tests'}
+  - {component: appstore-caching-service, command: 'mvn clean verify'}
+  reporting:
+  - {tool: Allure, command: 'mvn -pl appstore-bundle-service-test allure:serve'}
+  time_simulation: false
+  trigger_tooling: false
+not_published:
+- hosted sandbox or try-it console
+- test vs live API keys or key prefixes
+- self-serve credential issue
+- a sandbox for any CAMARA network API (those are onboarded through Virgin Media O2 / VodafoneZiggo, not the parent)

@@ -1,0 +1,112 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  openapi/*.yml (derived) +
+  https://www.libertyglobal.com/about/corporate-governance/data-privacy-protection/
+  (searched) + Liberty Global press releases on GSMA Open Gateway and CAMARA
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Three published documents — ASMS 3.0.0, AppStore Bundle Service 3.0.1,
+    AppStore Caching Service 3.0.1. All parse as valid OpenAPI.
+- id: openapi-3.1
+  conforms: false
+  evidence: No 3.1 document is published.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a proprietary one-field {message} envelope on
+    application/json. No application/problem+json media type appears anywhere.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset or Deprecation header is specified or documented.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 securityScheme in any specification; 0-working/derive-oauth-scopes.py
+    returned zero schemes and zero scopes.
+- id: openid-connect
+  conforms: false
+  evidence: >-
+    No OIDC discovery document on any libertyglobal.com host; /.well-known/openid-configuration
+    returns 404 on www.libertyglobal.com and every other developer hostname is NXDOMAIN.
+- id: http-basic-auth
+  conforms: true
+  evidence: >-
+    RFC 7617 Basic credentials on the ASMS Proxy (STB perspective) and AS3
+    Proxy (Maintainer perspective), documented in the project README. Not
+    declared in the specification.
+- id: json-api
+  conforms: false
+  evidence: Responses are plain JSON objects; no JSON:API document structure, type/id members or content type.
+- id: offset-limit-pagination
+  conforms: true
+  evidence: >-
+    offset + limit query parameters with a meta.resultSet {count, offset,
+    limit, total} response envelope on listApplications,
+    listMaintainerApplications and getMaintainers.
+- id: idempotency-key
+  conforms: false
+  evidence: No Idempotency-Key header or parameter in any specification or in the README.
+- id: camara
+  conforms: partial
+  evidence: >-
+    Liberty Global has committed publicly to CAMARA standard APIs — the
+    2024-02-21 Network-as-a-Service framework with AWS is explicitly built on
+    CAMARA and GSMA Open Gateway standards — and CAMARA-standardised APIs are
+    commercially live inside the group. But nothing CAMARA-shaped is callable
+    from, documented by, or credentialed through Liberty Global itself. Every
+    implementation sits in an operating joint venture: Virgin Media O2 (KYC Age
+    Verify, KYC Tenure, SIM Swap, KYC Match announced) and VodafoneZiggo (four
+    APIs including SIM Swap and Number Verification). Conformance is held by
+    the JVs, not the parent.
+  spec_available: false
+- id: gsma-open-gateway
+  conforms: partial
+  evidence: >-
+    Liberty Global states it has been part of the GSMA Open Gateway initiative
+    since its launch at MWC 2023, and the September 2025 UK age-verification
+    launch was run through Open Gateway with BT, EE and Vodafone. Participation
+    is exercised entirely through Virgin Media O2 and VodafoneZiggo; no Open
+    Gateway developer surface exists on any libertyglobal.com hostname.
+- id: tmforum-open-api
+  conforms: unknown
+  evidence: >-
+    No TM Forum Open API conformance certification (TMF620, TMF622, TMF641 or
+    otherwise) was found published by Liberty Global. Absence of evidence —
+    BSS/OSS conformance is commonly held privately by group operators.
+- id: 3gpp-nef-scef
+  conforms: false
+  evidence: No public NEF or SCEF surface, network-slicing API or edge/MEC API was found.
+- id: oci-image-spec
+  conforms: true
+  evidence: >-
+    Application metadata carries an ociImageUrl and an OCI-style application
+    type media range (application/vnd.rdk-app.dac.lightning); the DAC model
+    distributes applications as OCI container bundles.
+compliance_program:
+  published: true
+  url: https://www.libertyglobal.com/about/corporate-governance/data-privacy-protection/
+  scope: corporate — data privacy and information security, not API-specific
+  statement: >-
+    "We abide by the General Data Protection Regulation, Sarbanes Oxley Act,
+    ISO 27001, CAS(T) and Payment Card Industry DSS legislation in order to
+    ensure this."
+  standards_named:
+  - GDPR
+  - Sarbanes-Oxley Act (SOX)
+  - ISO 27001
+  - CAS(T)
+  - PCI DSS
+  governance: >-
+    A "Digital Confidence" team oversees privacy, lawful intercept, security
+    and related product lifecycle governance. GDPR compliance was reviewed
+    across the footprint by an external consulting firm in 2019.
+  caveat: >-
+    This is a corporate governance narrative page, not a trust centre and not
+    an attestation portal. No SOC 2 report, ISO 27001 certificate number,
+    audit-firm name or report-request workflow is published. Recorded as a
+    published compliance posture; no `TrustCenter` pointer is claimed because
+    no trust centre exists — trust.libertyglobal.com and
+    security.libertyglobal.com do not resolve.

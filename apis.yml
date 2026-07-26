@@ -64,6 +64,8 @@ apis:
     url: https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/appstore-metadata-service/src/main/resources/static/appstore-metadata-service.yaml
   - type: SourceCode
     url: https://github.com/LibertyGlobal/appstore-metadata-service
+  - type: Overlay
+    url: overlays/liberty-global-appstore-metadata-service-overlay.yaml
 - aid: liberty-global:appstore-bundle-service-api
   name: AppStore Bundle Service API
   description: The AppStore Bundle Service API from Liberty Global Technology
@@ -88,6 +90,8 @@ apis:
     url: https://github.com/LibertyGlobal/appstore-bundle-service/blob/master/appstore-bundle-service-application/src/main/resources/static/appstore-bundle-service.yaml
   - type: SourceCode
     url: https://github.com/LibertyGlobal/appstore-bundle-service
+  - type: Overlay
+    url: overlays/liberty-global-appstore-bundle-service-overlay.yaml
 - aid: liberty-global:appstore-caching-service-api
   name: AppStore Caching Service API
   description: The AppStore Caching Service API from Liberty Global Technology
@@ -111,7 +115,13 @@ apis:
     url: https://github.com/LibertyGlobal/appstore-caching-service/blob/master/appstore-caching-service-nginx/appstore-caching-service.yaml
   - type: SourceCode
     url: https://github.com/LibertyGlobal/appstore-caching-service
+  - type: Overlay
+    url: overlays/liberty-global-appstore-caching-service-overlay.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/liberty-global-agentic-access.yml
+- type: DomainSecurity
+  url: security/liberty-global-domain-security.yml
 - type: Website
   url: https://www.libertyglobal.com/
 - type: GitHubOrganization
@@ -119,9 +129,41 @@ common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/liberty-global
 - type: Blog
-  url: https://www.libertyglobal.com/news/
+  url: https://www.libertyglobal.com/news-insights/insights/
+- type: BlogRSS
+  url: https://www.libertyglobal.com/feed/
 - type: Contact
-  url: https://www.libertyglobal.com/contact-us/
+  url: https://www.libertyglobal.com/contact/
+- type: TermsOfService
+  url: https://www.libertyglobal.com/legal-notices/
+- type: PrivacyPolicy
+  url: https://www.libertyglobal.com/privacy-and-security-policy/
+- type: Compliance
+  url: https://www.libertyglobal.com/about/corporate-governance/data-privacy-protection/
+- type: Conformance
+  url: conformance/liberty-global-conformance.yml
+- type: Authentication
+  url: authentication/liberty-global-authentication.yml
+- type: Conventions
+  url: conventions/liberty-global-conventions.yml
+- type: ErrorCatalog
+  url: errors/liberty-global-problem-types.yml
+- type: DataModel
+  url: data-model/liberty-global-data-model.yml
+- type: Lifecycle
+  url: lifecycle/liberty-global-lifecycle.yml
+- type: ChangeLog
+  url: changelog/liberty-global-changelog.yml
+- type: Packages
+  url: packages/liberty-global-packages.yml
+- type: Sandbox
+  url: sandbox/liberty-global-sandbox.yml
+- type: VulnerabilityDisclosure
+  url: security/liberty-global-vulnerability-disclosure.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/liberty-global-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

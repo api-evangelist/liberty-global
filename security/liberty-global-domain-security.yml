@@ -1,0 +1,22 @@
+generated: '2026-07-25'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.libertyglobal.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar 27 12:42:18 2027 GMT
+  hsts: false
+domains:
+- domain: libertyglobal.com
+  dnssec: false
+  caa:
+  - 0 issuewild "pki.goog"
+  - 0 issuewild "sectigo.com"
+  - 0 issue "sectigo.com"
+  - 0 issue "comodoca.com"
+  - 0 issuewild "amazontrust.com"
+  - 0 iodef "mailto:pki@libertyglobal.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,94 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  Docker Hub, Helm chart repositories on libertyglobal.github.io, npm, PyPI,
+  Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io
+summary: >-
+  Liberty Global ships no client SDK for any Liberty Global API. What it does
+  publish, and what is catalogued below, is the runtime distribution of the
+  RDK/DAC AppStore stack whose three OpenAPI definitions are in openapi/:
+  container images on Docker Hub under the `daccloud` namespace and Helm charts
+  served from libertyglobal.github.io. Those are server distributions — you
+  deploy the API with them, you do not call the API with them — so no `SDKs`
+  pointer is wired into apis.yml. The `sdk_count` ergonomics signal is
+  genuinely absent for this provider.
+sdk_count: 0
+packages:
+- kind: container-image
+  registry: docker-hub
+  name: daccloud/appstore-metadata-service
+  url: https://hub.docker.com/r/daccloud/appstore-metadata-service
+  install: docker pull daccloud/appstore-metadata-service:latest
+  official: true
+  api: openapi/liberty-global-appstore-metadata-service-openapi.yml
+  pull_count: 488
+  evidence: https://github.com/LibertyGlobal/appstore-metadata-service
+- kind: container-image
+  registry: docker-hub
+  name: daccloud/appstore-bundle-service
+  url: https://hub.docker.com/r/daccloud/appstore-bundle-service
+  install: docker run --rm -d -p 8080:8080 --name appstore-bundle-service daccloud/appstore-bundle-service:latest
+  official: true
+  api: openapi/liberty-global-appstore-bundle-service-openapi.yml
+  pull_count: 4364
+  evidence: https://raw.githubusercontent.com/LibertyGlobal/appstore-bundle-service/master/README.md
+- kind: container-image
+  registry: docker-hub
+  name: daccloud/appstore-caching-service
+  url: https://hub.docker.com/r/daccloud/appstore-caching-service
+  install: docker run --rm -d -p 8080:8080 -name appstore-caching-service daccloud/appstore-caching-service:latest
+  official: true
+  api: openapi/liberty-global-appstore-caching-service-openapi.yml
+  pull_count: 1582
+  evidence: https://raw.githubusercontent.com/LibertyGlobal/appstore-caching-service/master/README.md
+- kind: helm-chart
+  registry: helm
+  name: appstore-bundle-service
+  url: https://libertyglobal.github.io/appstore-bundle-service/charts/
+  index: https://libertyglobal.github.io/appstore-bundle-service/charts/index.yaml
+  install: helm repo add appstore-bundle-service https://libertyglobal.github.io/appstore-bundle-service/charts/
+  latest_version: 0.16.3
+  versions: [0.16.3, 0.16.2, 0.16.1, 0.15.0]
+  kube_version: '>=1.12.0-0'
+  official: true
+  api: openapi/liberty-global-appstore-bundle-service-openapi.yml
+- kind: helm-chart
+  registry: helm
+  name: appstore-caching-service
+  url: https://libertyglobal.github.io/appstore-caching-service/charts/
+  index: https://libertyglobal.github.io/appstore-caching-service/charts/index.yaml
+  install: helm repo add appstore-caching-service https://libertyglobal.github.io/appstore-caching-service/charts/
+  latest_version: 0.6.0
+  versions: [0.6.0]
+  kube_version: '>=1.12.0-0'
+  official: true
+  api: openapi/liberty-global-appstore-caching-service-openapi.yml
+not_first_party:
+- name: sequoia-client-sdk
+  registry: pypi
+  url: https://pypi.org/project/sequoia-client-sdk/
+  note: >-
+    github.com/LibertyGlobal/sequoia-python-client-sdk is a fork. The PyPI
+    package is authored by Piksel (home_page
+    github.com/pikselpalette/sequoia-python-client-sdk) for Piksel Palette
+    services, not for a Liberty Global API. Marked official:false and excluded
+    from sdk_count.
+- name: thunderjs
+  registry: npm
+  url: https://www.npmjs.com/package/thunderjs
+  note: >-
+    Name collision. The npm package `thunderjs` is an unrelated WebP image
+    library by charlespeters. LibertyGlobal/ThunderJS is an upstreaming fork of
+    the RDK Thunder JavaScript library and is not published to npm under
+    Liberty Global's name.
+registries_probed:
+- {registry: npm, first_party_hits: 0}
+- {registry: pypi, first_party_hits: 0}
+- {registry: maven-central, first_party_hits: 0}
+- {registry: nuget, first_party_hits: 0}
+- {registry: pkg.go.dev, first_party_hits: 0}
+- {registry: rubygems, first_party_hits: 0}
+- {registry: packagist, first_party_hits: 0}
+- {registry: crates.io, first_party_hits: 0}
+- {registry: docker-hub, first_party_hits: 3}
+- {registry: helm, first_party_hits: 2}

@@ -1,0 +1,121 @@
+generated: '2026-07-25'
+method: derived
+status: candidate
+source: >-
+  openapi/liberty-global-appstore-metadata-service-openapi.yml,
+  openapi/liberty-global-appstore-bundle-service-openapi.yml,
+  openapi/liberty-global-appstore-caching-service-openapi.yml
+summary: >-
+  No official hosted or remote Model Context Protocol server exists for Liberty
+  Global, and none could plausibly exist at the parent level — there is no
+  gateway, no developer portal and no public base URL to front. The tool set
+  below is DERIVED from the fourteen operations in the three published RDK/DAC
+  AppStore specifications, as a proposal for an operator who self-hosts the
+  stack and wants to expose it to an agent. It is not published by Liberty
+  Global, and no `MCPServer` pointer is wired into apis.yml.
+server: null
+transport: null
+url: null
+searched:
+- {registry: 'MCP registry (registry.modelcontextprotocol.io)', result: no Liberty Global server}
+- {registry: 'npm @modelcontextprotocol scope', result: no Liberty Global package}
+- {source: 'github.com/LibertyGlobal (82 public repos)', result: no MCP server repository}
+- {source: 'www.libertyglobal.com', result: 'no /mcp, no agent or AI-tooling developer surface; /.well-known/ai-plugin.json 404'}
+auth:
+  type: http-basic
+  note: >-
+    Per authentication/liberty-global-authentication.yml, the Maintainer
+    perspective is behind AS3 Basic auth and the STB perspective behind ASMS
+    Basic auth, both enforced at an Nginx proxy the operator deploys. Any MCP
+    server would carry those credentials per deployment.
+candidate_tools:
+- name: list_applications
+  maps_to: GET /apps
+  operation_id: listApplications
+  perspective: stb
+  description: Search the AppStore catalogue by name, description, version, type, platform, category or maintainer name, with offset/limit paging.
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#listApplications
+- name: get_application_details
+  maps_to: GET /apps/{applicationId}
+  operation_id: getApplicationDetails
+  perspective: stb
+  description: Fetch the full details of one application version as a set-top box would see it.
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getApplicationDetails
+- name: list_maintainers
+  maps_to: GET /maintainers
+  operation_id: getMaintainers
+  perspective: maintainer
+  description: List the maintainer companies registered with the AppStore Metadata Service.
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainers
+- name: create_maintainer
+  maps_to: POST /maintainers
+  operation_id: createMaintainer
+  perspective: maintainer
+  description: Register a maintainer company. Returns 409 if the code is taken.
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainer
+- name: get_maintainer
+  maps_to: GET /maintainers/{maintainerCode}
+  operation_id: getMaintainer
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainer
+- name: replace_maintainer
+  maps_to: PUT /maintainers/{maintainerCode}
+  operation_id: replaceMaintainer
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainer
+- name: delete_maintainer
+  maps_to: DELETE /maintainers/{maintainerCode}
+  operation_id: deleteMaintainer
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainer
+- name: list_maintainer_applications
+  maps_to: GET /maintainers/{maintainerCode}/apps
+  operation_id: listMaintainerApplications
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#listMaintainerApplications
+- name: create_maintainer_application
+  maps_to: POST /maintainers/{maintainerCode}/apps
+  operation_id: createMaintainerApplication
+  perspective: maintainer
+  description: Publish an application's metadata under a maintainer. Returns 409 if that id and version already exist.
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainerApplication
+- name: get_maintainer_application
+  maps_to: GET /maintainers/{maintainerCode}/apps/{applicationId}
+  operation_id: getMaintainerApplication
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainerApplication
+- name: replace_maintainer_application
+  maps_to: PUT /maintainers/{maintainerCode}/apps/{applicationId}
+  operation_id: replaceMaintainerApplication
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainerApplication
+- name: delete_maintainer_application
+  maps_to: DELETE /maintainers/{maintainerCode}/apps/{applicationId}
+  operation_id: deleteMaintainerApplication
+  perspective: maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainerApplication
+- name: request_application_bundle
+  maps_to: GET /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  operation_id: null
+  operation_id_note: The AppStore Bundle Service specification declares no operationId for its single operation.
+  perspective: bundle
+  description: Request a generated application bundle. 202 means generation is still in progress; poll the same URL.
+  source_operation: openapi/liberty-global-appstore-bundle-service-openapi.yml
+- name: fetch_cached_bundle
+  maps_to: GET /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  operation_id: null
+  operation_id_note: The AppStore Caching Service specification declares no operationId for its single operation.
+  perspective: caching
+  description: Fetch a bundle through the caching proxy. 200 when cached, 202 while the bundle service is still generating it.
+  source_operation: openapi/liberty-global-appstore-caching-service-openapi.yml
+coverage:
+  rest_operations: 14
+  candidate_tools: 14
+  operations_without_an_operation_id: 2
+tool_crosswalk:
+  emitted: false
+  reason: >-
+    A crosswalk binds a *published* MCP tool set (or GraphQL schema) to backing
+    REST operations. Liberty Global publishes neither an MCP server nor a
+    GraphQL endpoint, so the mapping above is already 1:1 by construction and a
+    separate crosswalk would record nothing that this file does not.

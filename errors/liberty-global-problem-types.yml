@@ -1,0 +1,160 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/liberty-global-appstore-metadata-service-openapi.yml,
+  openapi/liberty-global-appstore-bundle-service-openapi.yml,
+  openapi/liberty-global-appstore-caching-service-openapi.yml
+format: proprietary
+rfc9457: false
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+  properties:
+    message: {type: string, required: true}
+  note: >-
+    One shared, one-field envelope across all three services. No type URI, no
+    title, no status member, no instance — this is not RFC 9457 problem
+    details. Note also that the envelope is only bound to the `default`
+    response of a subset of operations; most explicit 4xx/5xx responses in the
+    ASMS specification declare no content at all, so a client cannot rely on
+    getting a JSON body with a message on an error.
+error_codes:
+  documented_in: response description strings, not in any schema
+  source_operation: getApplicationDetails 400
+  codes:
+  - {code: 100217, meaning: platformName is mandatory for native apps, status: 400}
+  - {code: 100231, meaning: firmwareVer is mandatory for native apps, status: 400}
+  - {code: 100237, meaning: unsupported application type, status: 400}
+  note: >-
+    These three are the only numeric application error codes Liberty Global
+    publishes anywhere. Their five-digit shape (1002xx) implies a wider
+    internal registry that is not published. No error-reference page exists —
+    there is no developer portal to host one.
+problems:
+- status: 400
+  title: Bad request
+  detail: platformName is mandatory for native apps (100217), firmwareVer is mandatory for native apps (100231), unsupported application type (100237)
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getApplicationDetails
+  body: none declared
+- status: 400
+  title: Bad request
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#listMaintainerApplications
+  body: none declared
+- status: 400
+  title: Bad request
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainerApplication
+  body: none declared
+- status: 400
+  title: Invalid request
+  source_operation: openapi/liberty-global-appstore-bundle-service-openapi.yml#get /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  body: ErrorResponse
+- status: 400
+  title: Invalid request
+  source_operation: openapi/liberty-global-appstore-caching-service-openapi.yml#get /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  body: ErrorResponse
+- status: 401
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#listMaintainerApplications
+  body: none declared
+  note: >-
+    The ASMS specification uses 401 and 403 interchangeably for the same
+    condition — the maintainer-scoped list and create operations return 401
+    "Access denied" while every other maintainer operation returns 403 "Access
+    denied". A client must handle both.
+- status: 401
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainerApplication
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getApplicationDetails
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainers
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainer
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainer
+  body: none declared
+- status: 403
+  title: Access denied. The requestor is not allowed to delete the maintainer
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainer
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainerApplication
+  body: none declared
+- status: 403
+  title: Access denied
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainerApplication
+  body: none declared
+- status: 403
+  title: Access denied. The requestor is not allowed to delete the application
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainerApplication
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getApplicationDetails
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainer
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainer
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainer
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#getMaintainerApplication
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#replaceMaintainerApplication
+  body: none declared
+- status: 404
+  title: Not Found
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#deleteMaintainerApplication
+  body: none declared
+- status: 404
+  title: Application not found in AppStore Metadata Service
+  source_operation: openapi/liberty-global-appstore-bundle-service-openapi.yml#get /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  body: none declared
+  note: The bundle service resolves the application against ASMS first; a 404 here means ASMS has no such application.
+- status: 404
+  title: Application not found in AppStore Bundle Service
+  source_operation: openapi/liberty-global-appstore-caching-service-openapi.yml#get /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  body: none declared
+- status: 409
+  title: Conflict
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainer
+  body: none declared
+  note: Maintainer code already exists. The only de-duplication signal the API offers.
+- status: 409
+  title: Conflict
+  source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainerApplication
+  body: none declared
+- status: 500
+  title: Internal Server Error
+  source_operation: openapi/liberty-global-appstore-caching-service-openapi.yml#get /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+  body: ErrorResponse
+- status: 5XX
+  title: Unexpected error
+  source_operation: >-
+    openapi/liberty-global-appstore-metadata-service-openapi.yml — declared on
+    all twelve ASMS operations as a range response
+  body: none declared
+coverage:
+  operations_total: 14
+  operations_with_error_responses: 14
+  operations_with_a_typed_error_body: 6
+  distinct_statuses: [400, 401, 403, 404, 409, 500, '5XX', default]

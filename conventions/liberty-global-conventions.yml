@@ -1,0 +1,138 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/liberty-global-appstore-metadata-service-openapi.yml,
+  openapi/liberty-global-appstore-bundle-service-openapi.yml,
+  openapi/liberty-global-appstore-caching-service-openapi.yml,
+  https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/README.md
+scope: >-
+  Cross-cutting request/response semantics of the RDK/DAC AppStore stack — the
+  only APIs Liberty Global itself publishes. These are open-source component
+  specifications for an operator-hosted deployment; there is no public gateway
+  and no group-wide API style guide.
+authentication:
+  style: HTTP Basic, enforced at the Nginx proxy tier, not declared in the spec
+  detail: authentication/liberty-global-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency contract. No Idempotency-Key header or parameter appears in
+    any of the three specifications, and the README documents none. Retry
+    safety rests entirely on HTTP method semantics: createMaintainer and
+    createMaintainerApplication are POST and return 409 Conflict on a duplicate
+    (that is the closest thing to a de-duplication guarantee the API offers);
+    replaceMaintainer and replaceMaintainerApplication are PUT and are
+    naturally idempotent; deletes are DELETE returning 204. No `Idempotency`
+    pointer is wired into apis.yml — there is nothing to point at.
+  conflict_semantics:
+  - {operation: createMaintainer, status: 409, meaning: maintainer code already exists}
+  - {operation: createMaintainerApplication, status: 409, meaning: application id + version already exists for that maintainer}
+pagination:
+  style: offset-limit
+  applies_to: [listApplications, listMaintainerApplications, getMaintainers]
+  request_params:
+  - {name: offset, in: query, type: integer, description: number of items to skip before collecting the result set, example: 0}
+  - {name: limit, in: query, type: integer, description: number of items to return, example: 10}
+  response_envelope: meta.resultSet
+  response_fields:
+  - {field: meta.resultSet.count, description: number of items in the current result set}
+  - {field: meta.resultSet.offset, description: number of skipped items}
+  - {field: meta.resultSet.limit, description: maximum number of items in the current result set}
+  - {field: meta.resultSet.total, description: number of items matching the search criteria}
+  cursor: false
+  link_headers: false
+filtering:
+  style: flat query parameters on listApplications
+  params: [name, description, version, type, platform, category, maintainerName]
+  semantics: >-
+    name and description are pattern matches; version defaults to the literal
+    string "latest"; platform is an "architecture:[version]:[os]" triple
+    (example arm:v7:linux); type is an OCI-style media type (example
+    application/vnd.rdk-app.dac.lightning); category is a closed enum.
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/include parameter. Instead the API ships two fixed
+    projections of the same object per perspective — a *Header schema (list
+    view: StbApplicationHeader, MaintainerApplicationHeader) and a *Details
+    schema (single-resource view: StbApplicationDetails,
+    MaintainerApplicationDetails). Shape is chosen by endpoint, not by caller.
+metadata:
+  user_defined: false
+  note: >-
+    `meta` is reserved for the pagination result set. There is no arbitrary
+    key/value metadata bag on any resource. The nearest thing is
+    header.localization[], a structured per-language name/description array.
+request_tracing:
+  request_id_header: null
+  note: No correlation or request-id header is documented or specified.
+versioning:
+  api_version_in_path: false
+  api_version_header: null
+  note: >-
+    The APIs are unversioned on the wire — paths are /apps, /maintainers,
+    /applications/... with no /v1 segment and no version header. Versioning is
+    of the artifact, not the interface: info.version (ASMS 0.7.0, bundle 0.0.1,
+    caching 0.0.1) tracks the document, and semver GitHub release tags track
+    the deployable. See lifecycle/ and changelog/.
+  resource_versioning: >-
+    Applications themselves are version-addressed: {applicationId} carries an
+    id:version form, StbVersions/MaintainerVersions list an application's
+    versions, and the bundle and caching services key their single path on
+    appVersion + firmwareVersion.
+error_envelope:
+  media_type: application/json
+  format: proprietary
+  rfc9457: false
+  schema: {message: string}
+  required: [message]
+  note: >-
+    All three services share the same one-field ErrorResponse. It is not RFC
+    9457 problem+json — no type, title, status, detail or instance member, and
+    the content type is application/json. Numeric error codes exist in the
+    product (100217, 100231, 100237) but are documented only inside a response
+    *description* string, not in the schema. See errors/.
+  detail: errors/liberty-global-problem-types.yml
+rate_limiting:
+  documented: false
+  headers: []
+  note: >-
+    No rate-limit policy, no RateLimit/X-RateLimit headers, no 429 response in
+    any of the three specifications. The deployment is operator-hosted, so
+    limits would be set by the operator's Nginx tier, not by the contract.
+content_types:
+  request: [application/json]
+  response: [application/json, application/octet-stream]
+  note: >-
+    The bundle and caching services return the generated application bundle as
+    a binary stream; 202 Accepted signals the bundle is still being generated.
+async_semantics:
+  pattern: 202-Accepted-then-poll
+  detail: >-
+    GET on the bundle service returns 202 while the Bundle Generator and Bundle
+    Cryptor produce the artifact, and the caching service returns 200 once the
+    bundle is cached and 202 while it is not. A caller polls the same URL.
+internal_event_surface:
+  documented: true
+  public: false
+  transport: AMQP (RabbitMQ)
+  queues:
+  - bundlegen-service-requests
+  - bundlegen-service-status
+  - bundlecrypt-service-requests
+  - bundlecrypt-service-status
+  source: https://raw.githubusercontent.com/LibertyGlobal/appstore-bundle-service/master/README.md
+  note: >-
+    Recorded for completeness, not wired as an event surface. These are
+    internal service-to-service queues the operator declares when standing up
+    the stack; the README publishes their names but no message schema, so no
+    AsyncAPI document can be written without fabricating payloads, and no
+    `AsyncAPI` or `Webhooks` pointer is claimed. Liberty Global publishes no
+    consumer-facing webhooks.
+cross_links:
+  authentication: authentication/liberty-global-authentication.yml
+  errors: errors/liberty-global-problem-types.yml
+  lifecycle: lifecycle/liberty-global-lifecycle.yml
+  data_model: data-model/liberty-global-data-model.yml
+  sandbox: sandbox/liberty-global-sandbox.yml

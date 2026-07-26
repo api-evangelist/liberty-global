@@ -1,0 +1,65 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  https://github.com/LibertyGlobal/appstore-metadata-service/releases.atom,
+  https://github.com/LibertyGlobal/appstore-bundle-service/releases.atom,
+  https://github.com/LibertyGlobal/appstore-caching-service/releases.atom,
+  https://libertyglobal.github.io/appstore-bundle-service/charts/index.yaml,
+  https://libertyglobal.github.io/appstore-caching-service/charts/index.yaml
+scheme: git release tags (semver), one stream per component
+narrative_changelog: false
+note: >-
+  Liberty Global publishes no narrative changelog — no CHANGELOG.md in any of
+  the three component repositories (probed, 404), and no changelog page,
+  because there is no developer portal to host one. What exists is a dated,
+  machine-readable release record: tagged GitHub releases per component, plus
+  Helm chart indexes with created timestamps. That is captured verbatim below.
+  The releases carry no published notes body, so no breaking-vs-additive
+  classification is asserted — inferring one would be fabrication.
+current:
+  appstore-metadata-service: v0.1.15
+  appstore-bundle-service: v0.16.3
+  appstore-caching-service: v0.6.1
+last_activity: '2023-11-23'
+streams:
+- component: appstore-metadata-service
+  api: openapi/liberty-global-appstore-metadata-service-openapi.yml
+  releases_url: https://github.com/LibertyGlobal/appstore-metadata-service/releases
+  entries:
+  - {version: v0.1.15, date: '2023-11-23'}
+  - {version: v0.1.14, date: '2023-10-13'}
+  - {version: v0.1.13, date: '2023-10-02'}
+  - {version: v0.1.12, date: '2023-09-05'}
+  - {version: v0.1.11, date: '2023-08-31'}
+  - {version: v0.1.10, date: '2023-08-29'}
+  - {version: v0.1.9, date: '2023-08-09'}
+  - {version: v0.1.8, date: '2023-07-25'}
+  - {version: v0.1.7, date: '2023-06-23'}
+  - {version: '0.1.6', date: '2022-12-14'}
+- component: appstore-bundle-service
+  api: openapi/liberty-global-appstore-bundle-service-openapi.yml
+  releases_url: https://github.com/LibertyGlobal/appstore-bundle-service/releases
+  entries:
+  - {version: v0.16.3, date: '2023-10-13', chart: 0.16.3}
+  - {version: v0.16.2, date: '2023-08-09', chart: 0.16.2}
+  - {version: v0.16.1, date: '2023-06-14', chart: 0.16.1}
+  - {version: v0.15.0, date: '2023-06-13', chart: 0.15.0}
+  - {version: v0.14.0, date: '2023-06-13'}
+- component: appstore-caching-service
+  api: openapi/liberty-global-appstore-caching-service-openapi.yml
+  releases_url: https://github.com/LibertyGlobal/appstore-caching-service/releases
+  entries:
+  - {version: v0.6.1, date: '2023-10-13'}
+  - {version: v0.6.0, date: '2023-06-13', chart: 0.6.0}
+observations:
+- >-
+  The tag prefix is inconsistent across the metadata service's own history —
+  0.1.6 (2022-12-14) is unprefixed, every release from v0.1.7 onward carries a
+  v. A consumer pinning by tag has to handle both forms.
+- >-
+  The Helm chart index for the bundle service lists four chart versions
+  (0.15.0-0.16.3) all created on the same day, 2023-10-13, even though the
+  corresponding releases span June to October 2023 — the chart repository was
+  republished in one pass rather than continuously.
+- >-
+  Nothing has been released in any of the three streams since 2023-11-23.

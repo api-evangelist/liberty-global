@@ -1,0 +1,41 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Liberty Global AppStore Bundle Service API
+  version: 1.0.0
+extends: openapi/liberty-global-appstore-bundle-service-openapi.yml
+x-apievangelist:
+  generated: '2026-07-25'
+  method: generated
+  source: API Evangelist enrichment round 2026-07-25.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: liberty-global
+    x-apievangelist-artifacts:
+      conventions: conventions/liberty-global-conventions.yml
+      errors: errors/liberty-global-problem-types.yml
+      data-model: data-model/liberty-global-data-model.yml
+      sandbox: sandbox/liberty-global-sandbox.yml
+    x-apievangelist-note: >-
+      Single-operation service with no declared operationId, no servers block
+      and no securitySchemes. It sits behind the AppStore Caching Service and
+      in front of the Bundle Generator and Bundle Cryptor, which it drives over
+      RabbitMQ queues (bundlegen-service-requests, bundlegen-service-status,
+      bundlecrypt-service-requests, bundlecrypt-service-status) documented in
+      the README but not specified anywhere.
+    x-apievangelist-async-semantics:
+      pattern: 202-Accepted-then-poll
+      note: 202 means the bundle is still being generated; the caller polls the same URL.
+    x-apievangelist-distribution:
+      container_image: daccloud/appstore-bundle-service
+      helm_chart: https://libertyglobal.github.io/appstore-bundle-service/charts/
+      latest_release: v0.16.3
+      released: '2023-10-13'
+- target: $.paths['/applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}'].get
+  update:
+    x-apievangelist-suggested-operation-id: getApplicationBundle
+    x-apievangelist-note: >-
+      No operationId is declared, which makes the operation unaddressable by
+      tooling, workflows and agent skills. A 404 here means the AppStore
+      Metadata Service could not resolve the application, not that the bundle
+      is missing.

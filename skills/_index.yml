@@ -1,0 +1,42 @@
+generated: '2026-07-25'
+method: generated
+source: >-
+  openapi/liberty-global-appstore-metadata-service-openapi.yml,
+  openapi/liberty-global-appstore-bundle-service-openapi.yml,
+  openapi/liberty-global-appstore-caching-service-openapi.yml, plus the
+  provider READMEs. Every operationId referenced was verified verbatim against
+  the specification.
+note: >-
+  Liberty Global publishes no AGENTS.md and no skill files — github.com/LibertyGlobal
+  was searched and the three component repositories probed. These are
+  API Evangelist-generated operating instructions for the only first-party API
+  surface Liberty Global has, the RDK/DAC AppStore stack. They are grounded in
+  real operationIds and the real conventions captured in this repo; the two
+  bundle-chain operations have no operationId in the source specification and
+  that is recorded rather than papered over.
+skills:
+- file: liberty-global-publish-an-rdk-app.md
+  name: Publish an RDK app to the Liberty Global AppStore
+  api: openapi/liberty-global-appstore-metadata-service-openapi.yml
+  perspective: maintainer
+  operations: [createMaintainer, getMaintainer, listMaintainerApplications, createMaintainerApplication, getMaintainerApplication, replaceMaintainerApplication, deleteMaintainerApplication]
+- file: liberty-global-discover-apps-from-a-set-top-box.md
+  name: Discover AppStore applications from a set-top box
+  api: openapi/liberty-global-appstore-metadata-service-openapi.yml
+  perspective: stb
+  operations: [listApplications, getApplicationDetails]
+- file: liberty-global-fetch-an-application-bundle.md
+  name: Fetch a generated application bundle
+  api: openapi/liberty-global-appstore-caching-service-openapi.yml
+  also_uses: openapi/liberty-global-appstore-bundle-service-openapi.yml
+  perspective: bundle-chain
+  operations: []
+  operations_note: Neither the caching nor the bundle service declares an operationId; both are single GETs on a five-segment composite path.
+coverage:
+  operations_total: 14
+  operations_covered: 12
+  uncovered: [getMaintainers, deleteMaintainer]
+  uncovered_note: >-
+    getMaintainers and deleteMaintainer are administrative operations on the
+    maintainer registry rather than steps in a developer flow, so no skill
+    packages them.

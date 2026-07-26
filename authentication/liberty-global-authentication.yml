@@ -1,0 +1,74 @@
+generated: '2026-07-25'
+method: searched
+source: openapi/*.yml (derived — none found) + provider README (searched)
+docs: https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/README.md
+summary:
+  types: [http]
+  http_schemes: [basic]
+  api_key_in: []
+  oauth2_flows: []
+  declared_in_openapi: false
+  documented_in_readme: true
+note: >-
+  0-working/derive-authentication.py returned zero schemes: none of the three
+  harvested OpenAPI documents declares a `securitySchemes` block, and none
+  applies `security` at the document or operation level. The auth model is
+  nevertheless real and documented — it lives in the AppStore Metadata Service
+  README rather than in the specification. That is the finding: an
+  authenticated API whose contract does not describe its own authentication.
+schemes:
+- name: as3-basic
+  type: http
+  scheme: basic
+  perspective: Maintainer (AS3)
+  applies_to: >-
+    Every write and maintainer-scoped operation — createMaintainer,
+    getMaintainer, replaceMaintainer, deleteMaintainer,
+    listMaintainerApplications, createMaintainerApplication,
+    getMaintainerApplication, replaceMaintainerApplication,
+    deleteMaintainerApplication
+  enforced_by: >-
+    The AS3 Proxy, an Nginx server in front of ASMS that exposes the metadata
+    management methods and authorizes each maintainer to their own
+    applications. Not enforced by the ASMS service itself.
+  documented_example: "Authorization: Basic <base64 of the as3 dev user>"
+  source: https://github.com/LibertyGlobal/appstore-metadata-service#request-samples
+  declared_in_spec: false
+- name: stb-basic
+  type: http
+  scheme: basic
+  perspective: STB
+  applies_to: 'Read-only discovery operations: listApplications, getApplicationDetails'
+  enforced_by: >-
+    The ASMS Proxy, a separate Nginx server that limits the method set exposed
+    to set-top-box devices to fetch-only. The README states this component
+    "should be providing unique authentication/authorization capabilities in
+    future versions of the ASMS initiative" — i.e. the STB-side auth model is
+    explicitly acknowledged as unfinished.
+  documented_example: "Authorization: Basic <base64 of the stb dev user>"
+  source: https://github.com/LibertyGlobal/appstore-metadata-service#request-samples
+  declared_in_spec: false
+unauthenticated_surfaces:
+- api: openapi/liberty-global-appstore-bundle-service-openapi.yml
+  note: >-
+    The AppStore Bundle Service specification declares no securitySchemes and
+    the README shows no Authorization header on any call. It is an internal
+    service reached from the caching layer, not a public endpoint.
+- api: openapi/liberty-global-appstore-caching-service-openapi.yml
+  note: >-
+    Same. The caching service is an Nginx proxy in front of the bundle service;
+    no auth is declared or documented.
+group_level:
+  camara_apis:
+    auth_model: not published by Liberty Global
+    note: >-
+      The CAMARA network APIs the group sells (SIM Swap, Number Verification,
+      KYC Age Verify, KYC Tenure) are onboarded through the operating joint
+      ventures — Virgin Media O2 and VodafoneZiggo — not through the parent.
+      No OIDC discovery document, no CIBA endpoint and no client-credentials
+      flow is published on any libertyglobal.com host; see
+      well-known/liberty-global-well-known.yml. CAMARA's own security profile
+      builds on OIDC/CIBA, but Liberty Global publishes nothing that would let
+      a developer authenticate.
+    ciba: false
+    oidc_discovery: false

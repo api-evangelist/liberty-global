@@ -1,0 +1,73 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Liberty Global AppStore Metadata Service API
+  version: 1.0.0
+extends: openapi/liberty-global-appstore-metadata-service-openapi.yml
+x-apievangelist:
+  generated: '2026-07-25'
+  method: generated
+  source: >-
+    API Evangelist enrichment round 2026-07-25. Captures what this repo learned
+    that the published specification does not say. The original Apache-2.0
+    document is never mutated.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: liberty-global
+    x-apievangelist-artifacts:
+      authentication: authentication/liberty-global-authentication.yml
+      conventions: conventions/liberty-global-conventions.yml
+      errors: errors/liberty-global-problem-types.yml
+      data-model: data-model/liberty-global-data-model.yml
+      sandbox: sandbox/liberty-global-sandbox.yml
+      lifecycle: lifecycle/liberty-global-lifecycle.yml
+      changelog: changelog/liberty-global-changelog.yml
+      agentic-access: agentic-access/liberty-global-agentic-access.yml
+      skills: skills/_index.yml
+    x-apievangelist-note: >-
+      Open-source component specification for an operator-hosted deployment.
+      No servers[] block and no securitySchemes are declared; the real auth
+      model is HTTP Basic enforced by two Nginx proxies (ASMS Proxy for the STB
+      perspective, AS3 Proxy for the Maintainer perspective) and is documented
+      only in the project README.
+    x-apievangelist-lifecycle: published-then-dormant
+    x-apievangelist-last-release: '2023-11-23'
+- target: $
+  update:
+    x-apievangelist-servers-note: >-
+      The document declares no servers. The provider's README documents local
+      deployment base URLs only: http://localhost:8081/as3 (Maintainer,
+      AS3 Proxy) and http://localhost:8082/asms (STB, ASMS Proxy). An operator
+      substitutes its own host.
+- target: $.info
+  update:
+    x-apievangelist-pagination:
+      style: offset-limit
+      params: [offset, limit]
+      envelope: meta.resultSet
+      fields: [count, offset, limit, total]
+    x-apievangelist-idempotency:
+      supported: false
+      note: No Idempotency-Key. POST creates signal duplication with 409 Conflict; PUT replaces are naturally idempotent.
+    x-apievangelist-error-envelope:
+      schema: ErrorResponse
+      shape: '{message: string}'
+      rfc9457: false
+      note: >-
+        Most explicit 4xx/5xx responses declare no content at all — only the
+        `default` response of six operations binds ErrorResponse. Clients
+        cannot rely on a JSON body for errors.
+    x-apievangelist-error-codes:
+      - {code: 100217, meaning: platformName is mandatory for native apps}
+      - {code: 100231, meaning: firmwareVer is mandatory for native apps}
+      - {code: 100237, meaning: unsupported application type}
+- target: $.paths['/maintainers/{maintainerCode}/apps'].get
+  update:
+    x-apievangelist-note: >-
+      Returns 401 "Access denied" where every other maintainer-scoped
+      operation returns 403 for the same condition. Handle both.
+- target: $.paths['/maintainers/{maintainerCode}/apps'].post
+  update:
+    x-apievangelist-note: >-
+      Returns 401 "Access denied" (not 403) and 409 Conflict when the
+      application id and version already exist for this maintainer.

@@ -1,0 +1,75 @@
+generated: '2026-07-25'
+method: searched
+source: >-
+  GitHub release feeds for LibertyGlobal/appstore-metadata-service,
+  appstore-bundle-service and appstore-caching-service; Helm chart indexes on
+  libertyglobal.github.io; live probes of libertyglobal.com
+versioning:
+  scheme: semver on the deployable artifact; the HTTP interface is unversioned
+  docs: null
+  current:
+    appstore-metadata-service: {spec_version: 0.7.0, release_tag: v0.1.15}
+    appstore-bundle-service: {spec_version: 0.0.1, release_tag: v0.16.3, chart: 0.16.3}
+    appstore-caching-service: {spec_version: 0.0.1, release_tag: v0.6.1, chart: 0.6.0}
+  note: >-
+    Three different version axes and none of them is the API. info.version
+    tracks the OpenAPI document, the git tag tracks the deployable, the Helm
+    chart tracks the packaging — and the wire interface carries no version
+    segment or header at all. All three components are pre-1.0.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No deprecation policy exists. No operation in any of the three
+    specifications is marked `deprecated: true`, and neither Sunset (RFC 8594)
+    nor Deprecation headers appear. No `Deprecation` pointer is wired into
+    apis.yml.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    None published, and structurally none is possible: these are components an
+    operator self-hosts, not a service Liberty Global runs for callers.
+status_page:
+  url: null
+  published: false
+  probed:
+  - {url: 'https://status.libertyglobal.com', result: DNS NXDOMAIN}
+  - {url: 'https://www.libertyglobal.com/status', result: '200, but redirects to /investors/investor-news/company-press-releases/'}
+  note: >-
+    No status page on any Liberty Global host. No `StatusPage` pointer is wired
+    into apis.yml. The operating joint ventures run their own consumer service
+    status pages; the parent runs none, and there is no API to report on.
+support:
+  channel: GitHub issues on each component repository
+  developer_email: developers@libertyglobal.com
+  email_source: https://api.github.com/orgs/LibertyGlobal
+  email_note: >-
+    Advertised on the LibertyGlobal GitHub organisation profile. Unverified —
+    the sibling field on the same profile, blog
+    https://developer.libertyglobal.com, is NXDOMAIN.
+maintenance_signal:
+  last_release: '2023-11-23'
+  last_release_artifact: appstore-metadata-service v0.1.15
+  releases_since: 0
+  months_since_last_release: 32
+  assessment: >-
+    Dormant. All three components stopped releasing in the second half of 2023.
+    The AppStore stack was Liberty Global's contribution to the RDK
+    Downloadable App Container (DAC) initiative; the code, the specs, the
+    container images and the Helm charts are all still published and still
+    fetchable, but nothing has shipped in more than two years. This is the only
+    first-party API surface Liberty Global has, and it is not being maintained.
+lifecycle_stage: published-then-dormant
+group_level:
+  note: >-
+    At the group level there is no API lifecycle to record — no versioning
+    policy, no deprecation policy, no changelog, no status page, because there
+    is no first-party API product. The CAMARA network APIs the group sells are
+    versioned and deprecated by the CAMARA project and operated by the joint
+    ventures (Virgin Media O2, VodafoneZiggo), each of which owns its own
+    lifecycle.

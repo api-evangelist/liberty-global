@@ -1,0 +1,98 @@
+generated: '2026-07-25'
+method: derived
+source: >-
+  openapi/liberty-global-appstore-metadata-service-openapi.yml (33 component
+  schemas), openapi/liberty-global-appstore-bundle-service-openapi.yml,
+  openapi/liberty-global-appstore-caching-service-openapi.yml
+summary: >-
+  Two root entities — Maintainer and Application — plus a bundle artifact that
+  is addressed rather than stored. The distinguishing feature of this model is
+  that Application is projected into two parallel schema families by audience:
+  Stb* (what a set-top box may see) and Maintainer* (what the publishing
+  developer may see), each with a list-view Header shape and a
+  single-resource Details shape. There is no shared canonical Application
+  representation on the wire.
+entities:
+- name: Maintainer
+  schema: Maintainer
+  identifier: code
+  identifier_note: >-
+    A short opaque company code (example "lgi"). Used as the {maintainerCode}
+    path segment; maintainers are grouped as companies and may only manage
+    applications belonging to their own company.
+  fields: [code, name, address, homepage, email]
+  update_shape: MaintainerForUpdate
+  collection_shape: MaintainerList
+  operations: [getMaintainers, createMaintainer, getMaintainer, replaceMaintainer, deleteMaintainer]
+- name: Application
+  schema: Application
+  identifier: id + version
+  identifier_note: >-
+    Applications are version-addressed. {applicationId} carries an id:version
+    form, and version defaults to the literal string "latest" on search. The
+    pair, not the id alone, identifies a resource.
+  update_shape: ApplicationForUpdate
+  projections:
+  - {audience: stb, list: StbApplicationHeader, single: StbSingleApplicationHeader, details: StbApplicationDetails, collection: StbApplicationsList, versions: StbVersions}
+  - {audience: maintainer, list: MaintainerApplicationHeader, single: MaintainerSingleApplicationHeader, details: MaintainerApplicationDetails, collection: MaintainerApplicationsList, versions: MaintainerVersions}
+  operations: [listApplications, getApplicationDetails, listMaintainerApplications, createMaintainerApplication, getMaintainerApplication, replaceMaintainerApplication, deleteMaintainerApplication]
+- name: ApplicationHeader
+  schema: ApplicationHeader
+  role: value object
+  fields_note: >-
+    id, version, name, description, icon, url, type, category, size, visible,
+    encryption, preferred, latest, ociImageUrl, localization[]. The generated
+    subset is split out as AppicationHeaderGeneratedAttributes (spelling is the
+    provider's).
+  update_shape: ApplicationHeaderForUpdate
+- name: Requirements
+  schema: Requirements
+  role: value object
+  composed_of: [Dependency, Platform, Hardware, Feature]
+- name: Localization
+  schema: Localization
+  role: value object
+  fields: [languageCode, name, description]
+- name: ApplicationBundle
+  schema: none — binary stream
+  identifier: appId + appVersion + platformName + firmwareVersion + appBundleName
+  note: >-
+    Not a stored resource with a schema. The bundle is addressed by a
+    five-segment composite key and returned as a stream; 202 Accepted means it
+    is still being generated. Modelled by the AppStore Bundle Service and
+    fronted by the AppStore Caching Service.
+relationships:
+- {from: Maintainer, to: Application, kind: has_many, via: 'path /maintainers/{maintainerCode}/apps'}
+- {from: Application, to: Maintainer, kind: belongs_to, via: 'maintainer object embedded in the create payload; maintainerName query filter on listApplications'}
+- {from: Application, to: ApplicationHeader, kind: has_one, via: header}
+- {from: Application, to: Requirements, kind: has_one, via: requirements}
+- {from: ApplicationHeader, to: Localization, kind: has_many, via: 'localization[]'}
+- {from: Requirements, to: Dependency, kind: has_many, via: 'dependencies[]'}
+- {from: Requirements, to: Platform, kind: has_one, via: platform}
+- {from: Requirements, to: Hardware, kind: has_one, via: hardware}
+- {from: Requirements, to: Feature, kind: has_many, via: 'features[]'}
+- {from: Application, to: StbVersion, kind: has_many, via: StbVersions}
+- {from: Application, to: MaintainerVersion, kind: has_many, via: MaintainerVersions}
+- {from: ApplicationBundle, to: Application, kind: belongs_to, via: 'appId + appVersion; bundle service returns 404 "Application not found in AppStore Metadata Service" when ASMS cannot resolve it'}
+- {from: '*List', to: Meta, kind: has_one, via: 'meta.resultSet pagination envelope'}
+enumerations:
+- {name: Category, schema: Category, note: 'closed enum on the category field; example value "application"'}
+- {name: ApplicationType, schema: ApplicationType, note: 'OCI-style media range; example application/vnd.rdk-app.dac.lightning'}
+cross_service_flow:
+  description: >-
+    The three published services form one chain. A set-top box asks the
+    Caching Service for a bundle; the Caching Service proxies the Bundle
+    Service; the Bundle Service resolves the application against ASMS and
+    drives the Bundle Generator and Bundle Cryptor over RabbitMQ. Only the
+    first three links are specified in OpenAPI.
+  chain:
+  - {service: appstore-caching-service, path: '/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}'}
+  - {service: appstore-bundle-service, path: '/applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}'}
+  - {service: appstore-metadata-service, path: '/apps/{applicationId}'}
+  - {service: bundle-generator-service, path: 'not specified — AMQP queue bundlegen-service-requests'}
+  - {service: bundle-cryptor-service, path: 'not specified — AMQP queue bundlecrypt-service-requests'}
+counts:
+  entities: 6
+  component_schemas: 33
+  relationships: 13
+  operations: 14
