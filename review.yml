@@ -1,0 +1,362 @@
+aid: liberty-global
+name: Liberty Global
+review:
+  question: Does Liberty Global operate a real, first-party, self-serve developer
+    portal and publish callable network APIs, or does it reach developers only
+    through its operating joint ventures?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: United Kingdom
+  tier: fixed-broadband
+findings:
+  summary: |
+    Liberty Global is a network owner and holding company, not a developer
+    platform. There is no first-party developer portal anywhere on
+    libertyglobal.com. Every conventional developer hostname probed on
+    2026-07-25 failed to resolve (NXDOMAIN): developer.libertyglobal.com,
+    developers.libertyglobal.com, docs.libertyglobal.com,
+    api.libertyglobal.com, opengateway.libertyglobal.com, and
+    developers.opengateway.libertyglobal.com. Every path probed on the
+    corporate site returned HTTP 404: /developer, /developers, /api,
+    /opengateway. The apex libertyglobal.com does not resolve either; only
+    www.libertyglobal.com is served.
+
+    The most telling artifact is a dangling reference the company publishes
+    about itself: the LibertyGlobal GitHub organisation profile
+    (https://api.github.com/orgs/LibertyGlobal, fetched 2026-07-25, HTTP 200)
+    lists "blog": "https://developer.libertyglobal.com" and
+    "email": "developers@libertyglobal.com". That developer hostname does not
+    resolve. Liberty Global points the world at a developer programme that no
+    longer exists — a dead developer programme with a live pointer to it.
+
+    Real specs were nevertheless found. Liberty Global Technology Services BV
+    publishes three Apache-2.0 OpenAPI 3.0 definitions in its public GitHub
+    organisation for the RDK set-top-box App Store stack. All three were
+    fetched verbatim, parse as valid OpenAPI, and are stored in openapi/.
+    These are open-source component specifications for operator-hosted
+    services — they declare no servers block, no security scheme, and no
+    public base URL. They are not a consumable public API product.
+
+    On the sector seam, Liberty Global is a genuine GSMA Open Gateway
+    participant but a structurally indirect one. It has been part of the
+    initiative since the MWC 2023 launch, and its February 2024
+    Network-as-a-Service announcement with AWS explicitly commits to CAMARA
+    standard APIs and GSMA Open Gateway standards. But nothing is callable
+    from the parent. Every CAMARA API with evidence behind it is exposed by an
+    operating joint venture, not by Liberty Global: Virgin Media O2 (50/50
+    with Telefonica) commercially launched CAMARA KYC Age Verify and KYC
+    Tenure in the UK alongside BT, EE and Vodafone in September 2025, already
+    had SIM Swap available, and had KYC Match slated for end-2025;
+    VodafoneZiggo (50/50 with Vodafone Group) was described in the AWS
+    announcement as already offering four APIs to customers including SIM Swap
+    and Number Verification. The UK launch is a joint operator programme, not
+    a Liberty Global product.
+
+    Liberty Global does not appear on Aduna's partner roster
+    (adunaglobal.com, fetched 2026-07-25) — the operators listed are Airtel,
+    AT&T, Deutsche Telekom, KDDI, Orange, Reliance Jio, Singtel, T-Mobile,
+    Telefonica, Telstra, Verizon and Vodafone, plus Ericsson. Its JV parents
+    Telefonica and Vodafone are there; Liberty Global itself is not. Reach to
+    the aggregation channel, where it exists, is inherited through the JV
+    partner rather than held directly.
+
+    Net: this is the sector's carrier pattern in its purest form. A real
+    network, a real standards commitment, a real press-release record — and no
+    front door. A developer cannot obtain a credential, read a reference, or
+    call an endpoint from Liberty Global. They must go to Virgin Media O2,
+    VodafoneZiggo, or the operators' shared UK channel.
+  developerPortal:
+    url: ''
+    confirmed: false
+    gated: true
+    verdict: >-
+      No developer portal exists. Not a login wall and not a marketing page —
+      nothing is served at any developer hostname or path. The one advertised
+      developer URL (developer.libertyglobal.com, on the company's own GitHub
+      org profile) is NXDOMAIN.
+  probes:
+  - url: https://developer.libertyglobal.com
+    status: DNS NXDOMAIN
+    note: Advertised as the org blog on github.com/LibertyGlobal; does not resolve.
+  - url: https://developers.libertyglobal.com
+    status: DNS NXDOMAIN
+  - url: https://docs.libertyglobal.com
+    status: DNS NXDOMAIN
+  - url: https://api.libertyglobal.com
+    status: DNS NXDOMAIN
+  - url: https://opengateway.libertyglobal.com
+    status: DNS NXDOMAIN
+  - url: https://developers.opengateway.libertyglobal.com
+    status: DNS NXDOMAIN
+    note: Telefonica pattern probed because Telefonica is the Virgin Media O2 JV partner.
+  - url: https://libertyglobal.com
+    status: DNS NXDOMAIN
+    note: Apex does not resolve; only www is served.
+  - url: https://www.libertyglobal.com/developer
+    status: 404
+  - url: https://www.libertyglobal.com/developers
+    status: 404
+  - url: https://www.libertyglobal.com/api
+    status: 404
+  - url: https://www.libertyglobal.com/opengateway
+    status: 404
+  - url: https://www.libertyglobal.com/openapi.json
+    status: 404
+  - url: https://www.libertyglobal.com/api-docs
+    status: 404
+  - url: https://www.libertyglobal.com/.well-known/openid-configuration
+    status: 404
+  - url: https://www.libertyglobal.com/robots.txt
+    status: 200
+  - url: https://github.com/LibertyGlobal
+    status: 200
+    note: 82 public repos; the only place Liberty Global publishes OpenAPI.
+  - url: https://libertyglobal.github.io/
+    status: 200
+    note: Not a developer portal — an old front-end developer job posting page.
+  - url: https://developer.virginmediao2.co.uk
+    status: DNS NXDOMAIN
+    note: JV operator probed to trace the actual developer channel.
+  - url: https://www.virginmediao2.co.uk/api
+    status: 404
+  - url: https://developer.o2.co.uk
+    status: DNS NXDOMAIN
+  - url: https://api.o2.co.uk
+    status: 500
+  - url: https://developer.vodafoneziggo.nl
+    status: DNS NXDOMAIN
+  - url: https://api.vodafoneziggo.nl
+    status: DNS NXDOMAIN
+  - url: https://developer.telenet.be
+    status: DNS NXDOMAIN
+  - url: https://api.telenet.be
+    status: DNS NXDOMAIN
+  openapi:
+    downloadable: true
+    count: 3
+    channel: Public GitHub organisation only — not a developer portal.
+    specs:
+    - file: openapi/liberty-global-appstore-metadata-service-openapi.yml
+      title: ASMS API
+      version: 0.7.0
+      openapiVersion: 3.0.0
+      sourceURL: https://raw.githubusercontent.com/LibertyGlobal/appstore-metadata-service/master/appstore-metadata-service/src/main/resources/static/appstore-metadata-service.yaml
+      httpStatus: 200
+      fetched: '2026-07-25'
+      bytes: 32671
+      license: Apache 2.0
+      copyright: Copyright 2022 Liberty Global Technology Services BV
+      paths:
+      - /apps
+      - /apps/{applicationId}
+      - /maintainers
+      - /maintainers/{maintainerCode}
+      - /maintainers/{maintainerCode}/apps
+      - /maintainers/{maintainerCode}/apps/{applicationId}
+      servers: none declared
+      securitySchemes: none declared
+    - file: openapi/liberty-global-appstore-bundle-service-openapi.yml
+      title: AppStore Bundle Service API
+      version: 0.0.1
+      openapiVersion: 3.0.1
+      sourceURL: https://raw.githubusercontent.com/LibertyGlobal/appstore-bundle-service/master/appstore-bundle-service-application/src/main/resources/static/appstore-bundle-service.yaml
+      httpStatus: 200
+      fetched: '2026-07-25'
+      bytes: 2792
+      license: Apache 2.0
+      copyright: Copyright 2023 Liberty Global Technology Services BV
+      paths:
+      - /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+      servers: none declared
+      securitySchemes: none declared
+    - file: openapi/liberty-global-appstore-caching-service-openapi.yml
+      title: AppStore Caching Service API
+      version: 0.0.1
+      openapiVersion: 3.0.1
+      sourceURL: https://raw.githubusercontent.com/LibertyGlobal/appstore-caching-service/master/appstore-caching-service-nginx/appstore-caching-service.yaml
+      httpStatus: 200
+      fetched: '2026-07-25'
+      bytes: 2971
+      license: Apache 2.0
+      copyright: Copyright 2023 Liberty Global Technology Services BV
+      paths:
+      - /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
+      servers: none declared
+      securitySchemes: none declared
+  camara:
+    posture: >-
+      GSMA Open Gateway participant since MWC 2023 with a real CAMARA
+      commitment, but nothing callable from Liberty Global itself — every
+      CAMARA API ships through the operating joint ventures (Virgin Media O2,
+      VodafoneZiggo), not the parent.
+    firstPartyCamaraEndpoint: false
+    pressReleaseOnly: false
+    pressReleaseOnlyNote: >-
+      This is more than a press release, but less than an implementation at
+      the parent level. Real commercial CAMARA APIs exist inside the group and
+      are being sold; none of them are exposed, documented, or credentialed by
+      Liberty Global. The AWS NaaS framework announced 2024-02-21 is a
+      framework commitment, and no developer surface from it was found live in
+      July 2026.
+    apisWithEvidence:
+    - name: SIM Swap
+      via: Virgin Media O2 (UK) and VodafoneZiggo (NL)
+      evidence: >-
+        VMO2 stated the SIM Swap API is already available in the UK operator
+        launch; the AWS NaaS release cites VodafoneZiggo already offering SIM
+        swap among four APIs.
+    - name: Number Verification
+      via: VodafoneZiggo (NL)
+      evidence: >-
+        AWS NaaS announcement, 2024-02-21, names "number verify" among the four
+        APIs VodafoneZiggo already offers customers.
+    - name: KYC Age Verification
+      via: Virgin Media O2 (UK)
+      evidence: >-
+        UK commercial launch with BT, EE and Vodafone, announced 2025-09-23 on
+        libertyglobal.com and by the GSMA; CAMARA-standardised, driven by the UK
+        Online Safety Act.
+    - name: KYC Tenure
+      via: Virgin Media O2 (UK)
+      evidence: Same UK commercial launch, 2025-09-23; available now.
+    - name: KYC Match
+      via: Virgin Media O2 (UK)
+      evidence: >-
+        Same announcement — described as forthcoming with fuzzy-logic matching
+        before end of 2025. Announced, not confirmed callable at review date.
+    notFound:
+    - Device Location / Location Verification
+    - Device Status / Reachability
+    - Quality on Demand (QoD)
+    - Carrier Billing
+    - Anti-fraud / Scam Signal
+    - Device Swap
+    - Population Density
+  openGateway:
+    member: true
+    since: '2023'
+    note: >-
+      Liberty Global states it has been part of the GSMA Open Gateway
+      initiative since its launch at MWC 2023. Participation is exercised
+      through Virgin Media O2 and VodafoneZiggo. No Open Gateway portal exists
+      on any libertyglobal.com hostname.
+  aduna:
+    partner: false
+    note: >-
+      Liberty Global, Virgin Media O2, VodafoneZiggo and Telenet are absent
+      from the operator roster published at adunaglobal.com (fetched
+      2026-07-25). JV parents Telefonica and Vodafone are listed. Any Aduna
+      reach is inherited through the JV partner, not held directly.
+  tmForum:
+    conformanceFound: false
+    note: >-
+      No TM Forum Open API conformance certification (TMF620, TMF622, TMF641
+      or otherwise) was found published by Liberty Global during this review.
+      Absence of evidence, not evidence of absence — BSS/OSS conformance is
+      commonly held privately by group operators.
+  threeGPP:
+    nefOrScefSurface: false
+    networkSlicingApi: false
+    edgeMecApi: false
+    note: >-
+      No public NEF or SCEF surface, no network-slicing API, and no edge/MEC
+      API were found. The AWS NaaS framework is the nearest adjacent
+      commitment and exposes nothing publicly.
+  auth:
+    model: none published
+    ciba: false
+    cibaNote: >-
+      CIBA (Client-Initiated Backchannel Authentication) does not appear
+      anywhere in Liberty Global's published material or in the three harvested
+      specs. The harvested App Store specs declare no securitySchemes at all.
+      Any OIDC/CIBA flows for the group's CAMARA APIs live behind the JV
+      operators' onboarding, which is not publicly reachable.
+    wellKnownProbed:
+    - url: https://www.libertyglobal.com/.well-known/openid-configuration
+      status: 404
+  webhooks:
+    published: false
+    asyncapi: false
+    note: No webhook or event catalog is published; no AsyncAPI documents found.
+  graphql:
+    found: false
+  grpc:
+    found: false
+  postman:
+    publicWorkspace: false
+    note: No first-party public Postman workspace found.
+  sdks:
+    firstPartyPackages: []
+    note: >-
+      No first-party API client SDKs on npm, PyPI, Maven Central or NuGet for a
+      Liberty Global API. The GitHub organisation ships platform engineering —
+      Flutter engine forks, WPEWebKit, Thunder/RDK services, Yocto layers — plus
+      archived legacy SDKs (Guide-SDK for a "Kraken API", Sequoia/Piksel Palette
+      client SDKs), which are not current API products.
+  channelToDevelopers: >-
+    Indirect. Developers reach Liberty Global's network capabilities only
+    through the operating joint ventures — Virgin Media O2 in the UK,
+    VodafoneZiggo in the Netherlands — or through the UK operators' shared
+    Open Gateway channel. The parent publishes no credentials, no reference,
+    and no endpoint.
+  transports:
+  - protocol: REST
+    scheme: https
+    documented: true
+    note: >-
+      Only in the three Apache-2.0 RDK App Store OpenAPI documents on GitHub.
+      No servers block, no hosted public base URL.
+  - protocol: GraphQL
+    documented: false
+  - protocol: gRPC
+    documented: false
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+  - protocol: Webhooks
+    documented: false
+sources:
+- url: https://www.libertyglobal.com/
+  type: Website
+  status: 200
+  note: Corporate overview — Liberty Telecom and Liberty Growth; ~80 million
+    connections; London HQ; VodafoneZiggo, Virgin Media O2, Virgin Media
+    Ireland, Telenet. No developer or API links.
+- url: https://api.github.com/orgs/LibertyGlobal
+  type: GitHubOrganization
+  status: 200
+  note: >-
+    82 public repos; org profile advertises blog https://developer.libertyglobal.com
+    (NXDOMAIN) and email developers@libertyglobal.com.
+- url: https://github.com/LibertyGlobal/appstore-metadata-service
+  type: SourceCode
+  status: 200
+  note: Source of the ASMS OpenAPI 3.0.0 definition.
+- url: https://github.com/LibertyGlobal/appstore-bundle-service
+  type: SourceCode
+  status: 200
+- url: https://github.com/LibertyGlobal/appstore-caching-service
+  type: SourceCode
+  status: 200
+- url: https://www.libertyglobal.com/uk-mobile-operators-launch-age-verification-and-anti-fraud-apis-through-gsma-open-gateway-initiative/
+  type: Press
+  status: 200
+  note: >-
+    2025-09-23 — VMO2 with BT, EE and Vodafone commercially launch
+    CAMARA-standardised KYC Age Verify and KYC Tenure; SIM Swap already
+    available; KYC Match by end of 2025. States Liberty Global has been part of
+    the initiative since MWC 2023.
+- url: https://www.libertyglobal.com/liberty-global-joins-forces-with-aws-to-develop-network-as-a-service/
+  type: Press
+  status: 200
+  note: >-
+    2024-02-21 — NaaS framework with AWS using CAMARA standard APIs on GSMA Open
+    Gateway standards; notes VodafoneZiggo already offers four APIs to customers
+    including SIM swap and number verify.
+- url: https://www.adunaglobal.com/
+  type: Reference
+  status: 200
+  note: >-
+    Operator roster checked for Liberty Global and its JVs — none listed; JV
+    parents Telefonica and Vodafone are.

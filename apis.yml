@@ -1,0 +1,127 @@
+aid: liberty-global
+url: https://raw.githubusercontent.com/api-evangelist/liberty-global/refs/heads/main/apis.yml
+name: Liberty Global
+kind: company
+description: >-
+  Liberty Global is a London-headquartered converged connectivity group
+  that owns and operates fixed-broadband and mobile networks across Europe, mostly
+  through joint ventures rather than under its own brand — Virgin Media O2 in the
+  United Kingdom (50/50 with Telefonica), VodafoneZiggo in the Netherlands (50/50
+  with Vodafone Group), Telenet in Belgium, and Virgin Media Ireland — serving roughly
+  80 million connections over fibre-rich broadband and 5G. It sits in the value chain
+  as a network owner and holding company, not as a developer-facing platform. Liberty
+  Global has been a GSMA Open Gateway participant since the initiative launched at
+  MWC 2023 and announced a Network-as-a-Service framework with AWS in February 2024
+  built on CAMARA standard APIs, but its API posture toward developers is partner-gated
+  and indirect: there is no first-party developer portal on libertyglobal.com — the
+  developer.libertyglobal.com hostname advertised on its own GitHub organisation
+  profile does not resolve — and every callable CAMARA network API reaches the market
+  through the operating joint ventures (Virgin Media O2's UK KYC Age Verify, KYC
+  Tenure and SIM Swap APIs; VodafoneZiggo's four Dutch network APIs) or through the
+  operators' shared channels, never from the parent. The only OpenAPI definitions
+  Liberty Global itself publishes are the Apache-2.0 RDK App Store service specs in
+  its public GitHub organisation.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Telecommunications
+- United Kingdom
+- Broadband
+- Fixed Broadband
+- Mobile Network Operator
+- Network APIs
+- CAMARA
+- Open Gateway
+- 5G
+- Europe
+- Set-Top Box
+- RDK
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis:
+- aid: liberty-global:appstore-metadata-service-api
+  name: AppStore Metadata Service API
+  description: The ASMS (AppStore Metadata Service) REST API from Liberty Global
+    Technology Services BV — the MAS API in RDK. Manages application metadata and
+    maintainer records for the RDK-based set-top box app store, with operations
+    over /apps, /maintainers, and per-maintainer application resources. Published
+    as an OpenAPI 3.0.0 definition under Apache 2.0 in the LibertyGlobal GitHub
+    organisation. It is an open-source component specification for an operator-hosted
+    service; no public hosted base URL, signup, or authentication scheme is defined
+    in the document.
+  humanURL: https://github.com/LibertyGlobal/appstore-metadata-service
+  tags:
+  - RDK
+  - App Store
+  - Metadata
+  - Set-Top Box
+  properties:
+  - type: OpenAPI
+    url: openapi/liberty-global-appstore-metadata-service-openapi.yml
+  - type: Documentation
+    url: https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/README.md
+  - type: APIReference
+    url: https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/appstore-metadata-service/src/main/resources/static/appstore-metadata-service.yaml
+  - type: SourceCode
+    url: https://github.com/LibertyGlobal/appstore-metadata-service
+- aid: liberty-global:appstore-bundle-service-api
+  name: AppStore Bundle Service API
+  description: The AppStore Bundle Service API from Liberty Global Technology
+    Services BV handles the application bundle generation process by interacting
+    with the Bundle Generator and Bundle Cryptor services, exposing a single
+    parameterised resource keyed on application id, application version, platform
+    name, firmware version, and bundle name. Published as an OpenAPI 3.0.1
+    definition under Apache 2.0 in the LibertyGlobal GitHub organisation, for an
+    operator-hosted deployment rather than a public endpoint.
+  humanURL: https://github.com/LibertyGlobal/appstore-bundle-service
+  tags:
+  - RDK
+  - App Store
+  - Bundles
+  - Set-Top Box
+  properties:
+  - type: OpenAPI
+    url: openapi/liberty-global-appstore-bundle-service-openapi.yml
+  - type: Documentation
+    url: https://github.com/LibertyGlobal/appstore-bundle-service/blob/master/README.md
+  - type: APIReference
+    url: https://github.com/LibertyGlobal/appstore-bundle-service/blob/master/appstore-bundle-service-application/src/main/resources/static/appstore-bundle-service.yaml
+  - type: SourceCode
+    url: https://github.com/LibertyGlobal/appstore-bundle-service
+- aid: liberty-global:appstore-caching-service-api
+  name: AppStore Caching Service API
+  description: The AppStore Caching Service API from Liberty Global Technology
+    Services BV acts as a caching proxy in front of the AppStore Bundle Service,
+    serving generated application bundles addressed by application id, version,
+    platform, firmware version, and bundle name. Published as an OpenAPI 3.0.1
+    definition under Apache 2.0 in the LibertyGlobal GitHub organisation, for an
+    operator-hosted deployment rather than a public endpoint.
+  humanURL: https://github.com/LibertyGlobal/appstore-caching-service
+  tags:
+  - RDK
+  - App Store
+  - Caching
+  - Set-Top Box
+  properties:
+  - type: OpenAPI
+    url: openapi/liberty-global-appstore-caching-service-openapi.yml
+  - type: Documentation
+    url: https://github.com/LibertyGlobal/appstore-caching-service/blob/master/README.md
+  - type: APIReference
+    url: https://github.com/LibertyGlobal/appstore-caching-service/blob/master/appstore-caching-service-nginx/appstore-caching-service.yaml
+  - type: SourceCode
+    url: https://github.com/LibertyGlobal/appstore-caching-service
+common:
+- type: Website
+  url: https://www.libertyglobal.com/
+- type: GitHubOrganization
+  url: https://github.com/LibertyGlobal
+- type: LinkedIn
+  url: https://www.linkedin.com/company/liberty-global
+- type: Blog
+  url: https://www.libertyglobal.com/news/
+- type: Contact
+  url: https://www.libertyglobal.com/contact-us/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
