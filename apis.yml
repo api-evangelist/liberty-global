@@ -118,6 +118,13 @@ apis:
   - type: Overlay
     url: overlays/liberty-global-appstore-caching-service-overlay.yaml
 common:
+- type: MCPServer
+  url: mcp/liberty-global-mcp.yml
+- type: IssueTracker
+  url: https://github.com/LibertyGlobal/appstore-metadata-service/issues
+- type: License
+  name: Apache-2.0
+  url: https://github.com/LibertyGlobal/appstore-metadata-service/blob/master/LICENSE
 - type: AgenticAccess
   url: agentic-access/liberty-global-agentic-access.yml
 - type: DomainSecurity
