@@ -1,39 +1,37 @@
 generated: '2026-07-25'
 method: derived
 status: candidate
-source: >-
-  openapi/liberty-global-appstore-metadata-service-openapi.yml,
-  openapi/liberty-global-appstore-bundle-service-openapi.yml,
+source: openapi/liberty-global-appstore-metadata-service-openapi.yml, openapi/liberty-global-appstore-bundle-service-openapi.yml,
   openapi/liberty-global-appstore-caching-service-openapi.yml
-summary: >-
-  No official hosted or remote Model Context Protocol server exists for Liberty
-  Global, and none could plausibly exist at the parent level — there is no
-  gateway, no developer portal and no public base URL to front. The tool set
-  below is DERIVED from the fourteen operations in the three published RDK/DAC
-  AppStore specifications, as a proposal for an operator who self-hosts the
-  stack and wants to expose it to an agent. It is not published by Liberty
-  Global, and no `MCPServer` pointer is wired into apis.yml.
+summary: No official hosted or remote Model Context Protocol server exists for Liberty Global, and none
+  could plausibly exist at the parent level — there is no gateway, no developer portal and no public base
+  URL to front. The tool set below is DERIVED from the fourteen operations in the three published RDK/DAC
+  AppStore specifications, as a proposal for an operator who self-hosts the stack and wants to expose
+  it to an agent. It is not published by Liberty Global, and no `MCPServer` pointer is wired into apis.yml.
 server: null
 transport: null
 url: null
 searched:
-- {registry: 'MCP registry (registry.modelcontextprotocol.io)', result: no Liberty Global server}
-- {registry: 'npm @modelcontextprotocol scope', result: no Liberty Global package}
-- {source: 'github.com/LibertyGlobal (82 public repos)', result: no MCP server repository}
-- {source: 'www.libertyglobal.com', result: 'no /mcp, no agent or AI-tooling developer surface; /.well-known/ai-plugin.json 404'}
+- registry: MCP registry (registry.modelcontextprotocol.io)
+  result: no Liberty Global server
+- registry: npm @modelcontextprotocol scope
+  result: no Liberty Global package
+- source: github.com/LibertyGlobal (82 public repos)
+  result: no MCP server repository
+- source: www.libertyglobal.com
+  result: no /mcp, no agent or AI-tooling developer surface; /.well-known/ai-plugin.json 404
 auth:
   type: http-basic
-  note: >-
-    Per authentication/liberty-global-authentication.yml, the Maintainer
-    perspective is behind AS3 Basic auth and the STB perspective behind ASMS
-    Basic auth, both enforced at an Nginx proxy the operator deploys. Any MCP
-    server would carry those credentials per deployment.
+  note: Per authentication/liberty-global-authentication.yml, the Maintainer perspective is behind AS3
+    Basic auth and the STB perspective behind ASMS Basic auth, both enforced at an Nginx proxy the operator
+    deploys. Any MCP server would carry those credentials per deployment.
 candidate_tools:
 - name: list_applications
   maps_to: GET /apps
   operation_id: listApplications
   perspective: stb
-  description: Search the AppStore catalogue by name, description, version, type, platform, category or maintainer name, with offset/limit paging.
+  description: Search the AppStore catalogue by name, description, version, type, platform, category or
+    maintainer name, with offset/limit paging.
   source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#listApplications
 - name: get_application_details
   maps_to: GET /apps/{applicationId}
@@ -77,7 +75,8 @@ candidate_tools:
   maps_to: POST /maintainers/{maintainerCode}/apps
   operation_id: createMaintainerApplication
   perspective: maintainer
-  description: Publish an application's metadata under a maintainer. Returns 409 if that id and version already exist.
+  description: Publish an application's metadata under a maintainer. Returns 409 if that id and version
+    already exist.
   source_operation: openapi/liberty-global-appstore-metadata-service-openapi.yml#createMaintainerApplication
 - name: get_maintainer_application
   maps_to: GET /maintainers/{maintainerCode}/apps/{applicationId}
@@ -97,16 +96,20 @@ candidate_tools:
 - name: request_application_bundle
   maps_to: GET /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
   operation_id: null
-  operation_id_note: The AppStore Bundle Service specification declares no operationId for its single operation.
+  operation_id_note: The AppStore Bundle Service specification declares no operationId for its single
+    operation.
   perspective: bundle
-  description: Request a generated application bundle. 202 means generation is still in progress; poll the same URL.
+  description: Request a generated application bundle. 202 means generation is still in progress; poll
+    the same URL.
   source_operation: openapi/liberty-global-appstore-bundle-service-openapi.yml
 - name: fetch_cached_bundle
   maps_to: GET /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}
   operation_id: null
-  operation_id_note: The AppStore Caching Service specification declares no operationId for its single operation.
+  operation_id_note: The AppStore Caching Service specification declares no operationId for its single
+    operation.
   perspective: caching
-  description: Fetch a bundle through the caching proxy. 200 when cached, 202 while the bundle service is still generating it.
+  description: Fetch a bundle through the caching proxy. 200 when cached, 202 while the bundle service
+    is still generating it.
   source_operation: openapi/liberty-global-appstore-caching-service-openapi.yml
 coverage:
   rest_operations: 14
@@ -114,8 +117,11 @@ coverage:
   operations_without_an_operation_id: 2
 tool_crosswalk:
   emitted: false
-  reason: >-
-    A crosswalk binds a *published* MCP tool set (or GraphQL schema) to backing
-    REST operations. Liberty Global publishes neither an MCP server nor a
-    GraphQL endpoint, so the mapping above is already 1:1 by construction and a
-    separate crosswalk would record nothing that this file does not.
+  reason: A crosswalk binds a *published* MCP tool set (or GraphQL schema) to backing REST operations.
+    Liberty Global publishes neither an MCP server nor a GraphQL endpoint, so the mapping above is already
+    1:1 by construction and a separate crosswalk would record nothing that this file does not.
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

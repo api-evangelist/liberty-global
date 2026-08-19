@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AppStore Bundle Service API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/applications/:appId/:appVersion/:platformName/:firmwareVersion/:appBundleName",
+            "headers": [
+              {
+                "name": "x-request-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "appVersion",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "platformName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "firmwareVersion",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "appBundleName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,472 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ASMS API",
+    "version": "0.7.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "STB",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns paginated list of applications available in AppStore Metadata Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/apps",
+            "params": [
+              {
+                "name": "name",
+                "value": "you.i",
+                "type": "query",
+                "description": "Application name (pattern)"
+              },
+              {
+                "name": "description",
+                "value": "Awesome application",
+                "type": "query",
+                "description": "Application description (pattern)"
+              },
+              {
+                "name": "version",
+                "value": "1.2.3",
+                "type": "query",
+                "description": "Searched version of application"
+              },
+              {
+                "name": "type",
+                "value": "application/vnd.rdk-app.dac.lightning",
+                "type": "query",
+                "description": "Application type"
+              },
+              {
+                "name": "platform",
+                "value": "arm:v7:linux",
+                "type": "query",
+                "description": "Running platform (architecture:[version]:[os])"
+              },
+              {
+                "name": "category",
+                "value": "application",
+                "type": "query",
+                "description": "Application category"
+              },
+              {
+                "name": "maintainerName",
+                "value": "Liberty Global",
+                "type": "query",
+                "description": "Maintainer name"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The number of items to return"
+              }
+            ]
+          },
+          "docs": "Returns paginated list of applications available in AppStore Metadata Service"
+        },
+        {
+          "info": {
+            "name": "Returns details of the specified application/version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/apps/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "com.libertyglobal.app.awesome:1.2.3",
+                "type": "path",
+                "description": "Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+              },
+              {
+                "name": "platformName",
+                "value": "",
+                "type": "query",
+                "description": "Platform name"
+              },
+              {
+                "name": "firmwareVer",
+                "value": "",
+                "type": "query",
+                "description": "Firmware version"
+              }
+            ]
+          },
+          "docs": "Returns details of the specified application/version"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Maintainer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search maintainers using specified name prefix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/maintainers",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "lgi",
+                "type": "query",
+                "description": "name of the searched maintainer (search is prefix based, not FTS and case insensitive)"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The numbers of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              }
+            ]
+          },
+          "docs": "Search maintainers using specified name prefix"
+        },
+        {
+          "info": {
+            "name": "Create new maintainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/maintainers",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new maintainer"
+        },
+        {
+          "info": {
+            "name": "Returns details of the specified maintainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Code of the requested maintainer"
+              }
+            ]
+          },
+          "docs": "Returns details of the specified maintainer"
+        },
+        {
+          "info": {
+            "name": "Update details of the specified maintainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "code of the maintainer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update details of the specified maintainer"
+        },
+        {
+          "info": {
+            "name": "Delete the specified maintainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "code of the delete maintainer"
+              }
+            ]
+          },
+          "docs": "Delete the specified maintainer"
+        },
+        {
+          "info": {
+            "name": "Returns paginated list of applications from the maintainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode/apps",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Maintainer code"
+              },
+              {
+                "name": "name",
+                "value": "you.i",
+                "type": "query",
+                "description": "Application name (pattern)"
+              },
+              {
+                "name": "description",
+                "value": "Awesome application",
+                "type": "query",
+                "description": "Application description (pattern)"
+              },
+              {
+                "name": "version",
+                "value": "1.2.3",
+                "type": "query",
+                "description": "Searched version"
+              },
+              {
+                "name": "type",
+                "value": "application/vnd.rdk-app.dac.lightning",
+                "type": "query",
+                "description": "Application type"
+              },
+              {
+                "name": "platform",
+                "value": "arm:v7:linux",
+                "type": "query",
+                "description": "Running platform"
+              },
+              {
+                "name": "category",
+                "value": "application",
+                "type": "query",
+                "description": "Application category"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The number of items to return"
+              }
+            ]
+          },
+          "docs": "Returns paginated list of applications from the maintainer"
+        },
+        {
+          "info": {
+            "name": "Create new application/version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode/apps",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Maintainer code"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new application/version"
+        },
+        {
+          "info": {
+            "name": "Returns the details of the specified application/version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode/apps/:applicationId",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Maintainer code"
+              },
+              {
+                "name": "applicationId",
+                "value": "com.libertyglobal.app.awesome:1.2.3",
+                "type": "path",
+                "description": "Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+              },
+              {
+                "name": "platformName",
+                "value": "",
+                "type": "query",
+                "description": "Platform name"
+              },
+              {
+                "name": "firmwareVer",
+                "value": "",
+                "type": "query",
+                "description": "Firmware version"
+              }
+            ]
+          },
+          "docs": "Returns the details of the specified application/version"
+        },
+        {
+          "info": {
+            "name": "Replace the contents of the specified application/version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode/apps/:applicationId",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Maintainer code"
+              },
+              {
+                "name": "applicationId",
+                "value": "com.libertyglobal.app.awesome:1.2.3",
+                "type": "path",
+                "description": "Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the contents of the specified application/version"
+        },
+        {
+          "info": {
+            "name": "Delete the specified application/version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/maintainers/:maintainerCode/apps/:applicationId",
+            "headers": [
+              {
+                "name": "x-maintainer-id",
+                "value": "1234abcd"
+              }
+            ],
+            "params": [
+              {
+                "name": "maintainerCode",
+                "value": "lgi",
+                "type": "path",
+                "description": "Maintainer code"
+              },
+              {
+                "name": "applicationId",
+                "value": "com.libertyglobal.app.awesome:1.2.3",
+                "type": "path",
+                "description": "Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+              }
+            ]
+          },
+          "docs": "Delete the specified application/version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

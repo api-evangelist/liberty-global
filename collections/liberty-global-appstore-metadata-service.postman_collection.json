@@ -1,0 +1,3762 @@
+{
+  "item": [
+    {
+      "id": "d6b0647c-7705-4099-985e-ecacd7dbc0f2",
+      "name": "STB",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "899c53bd-c2ff-4f29-84e9-0b1bb494ec59",
+          "name": "Returns paginated list of applications available in AppStore Metadata Service",
+          "request": {
+            "name": "Returns paginated list of applications available in AppStore Metadata Service",
+            "description": {},
+            "url": {
+              "path": [
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Application name (pattern)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "Application description (pattern)"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "latest",
+                  "description": "Searched version of application"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Application type"
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Running platform (architecture:[version]:[os])"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Application category"
+                },
+                {
+                  "disabled": false,
+                  "key": "maintainerName",
+                  "value": "<string>",
+                  "description": "Maintainer name"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The number of items to skip before starting to collect the result set"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f28f952-f39f-4913-88b4-52dc47433be5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "maintainerName",
+                      "value": "Liberty Global"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"category\": \"application\",\n      \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n      \"id\": \"com.libertyglobal.app.awesome\",\n      \"name\": \"Awesome Application\",\n      \"type\": \"application/vnd.rdk-app.dac.native\",\n      \"version\": \"1.2.3\",\n      \"description\": \"This is Awesome App\",\n      \"size\": 10000000,\n      \"localization\": [\n        {\n          \"languageCode\": \"nld\",\n          \"name\": \"Geweldige applicatie\",\n          \"description\": \"Dit is een geweldige applicatie\"\n        },\n        {\n          \"languageCode\": \"nld\",\n          \"name\": \"Geweldige applicatie\",\n          \"description\": \"Dit is een geweldige applicatie\"\n        }\n      ]\n    },\n    {\n      \"category\": \"application\",\n      \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n      \"id\": \"com.libertyglobal.app.awesome\",\n      \"name\": \"Awesome Application\",\n      \"type\": \"application/vnd.rdk-app.dac.native\",\n      \"version\": \"1.2.3\",\n      \"description\": \"This is Awesome App\",\n      \"size\": 10000000,\n      \"localization\": [\n        {\n          \"languageCode\": \"nld\",\n          \"name\": \"Geweldige applicatie\",\n          \"description\": \"Dit is een geweldige applicatie\"\n        },\n        {\n          \"languageCode\": \"nld\",\n          \"name\": \"Geweldige applicatie\",\n          \"description\": \"Dit is een geweldige applicatie\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"resultSet\": {\n      \"count\": 9,\n      \"offset\": 0,\n      \"limit\": 10,\n      \"total\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87abc6c2-f42d-46c2-8996-4911c2eaedf7",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "maintainerName",
+                      "value": "Liberty Global"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d4aee70-5343-48d5-aad2-7fb0caabf898",
+          "name": "Returns details of the specified application/version",
+          "request": {
+            "name": "Returns details of the specified application/version",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platformName",
+                  "value": "<string>",
+                  "description": "(Required) Platform name"
+                },
+                {
+                  "disabled": false,
+                  "key": "firmwareVer",
+                  "value": "<string>",
+                  "description": "(Required) Firmware version"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b0721e0-fc81-426a-a50b-a48b0a49164c",
+              "name": "Requested application details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"url\": \"https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz\",\n    \"version\": \"1.2.3\",\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  },\n  \"maintainer\": {\n    \"code\": \"lgi\",\n    \"name\": \"Liberty Global\",\n    \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n    \"homepage\": \"https://www.libertyglobal.com\",\n    \"email\": \"developer@libertyglobal.com\"\n  },\n  \"versions\": [\n    {\n      \"version\": \"1.2.3\"\n    },\n    {\n      \"version\": \"1.2.3\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4f5c182-daae-43a8-8a23-2765d1fd6bb4",
+              "name": "Bad request. Used when\n* platformName is mandatory for native apps (100217)\n* firmwareVer is mandatory for native apps (100231)\n* unsupported application type (100237)\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7181b45b-1d95-4cb6-b3a8-81601fb610ed",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86faf568-7964-40b5-92e3-31961b227ed3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f842ce5-31eb-470f-af97-d0becae47495",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45bbd63e-048e-4fbc-9bf4-0f42b2b28e7b",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "01227299-4233-4dab-ae8b-f984e84b3aaa",
+      "name": "Maintainer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d0bd875-6962-4ca0-9e08-e0ede4ed182b",
+          "name": "Search maintainers using specified name prefix",
+          "request": {
+            "name": "Search maintainers using specified name prefix",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "name of the searched maintainer (search is prefix based, not FTS and case insensitive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<int>",
+                  "description": "The numbers of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<int>",
+                  "description": "The number of items to skip before starting to collect the result set"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87159fe8-f056-4da2-affd-7e1fc51a3aae",
+              "name": "Requested maintainer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "lgi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"maintainers\": [\n    {\n      \"code\": \"lgi\",\n      \"name\": \"Liberty Global\",\n      \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n      \"homepage\": \"https://www.libertyglobal.com\",\n      \"email\": \"developer@libertyglobal.com\"\n    },\n    {\n      \"code\": \"lgi\",\n      \"name\": \"Liberty Global\",\n      \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n      \"homepage\": \"https://www.libertyglobal.com\",\n      \"email\": \"developer@libertyglobal.com\"\n    }\n  ],\n  \"meta\": {\n    \"resultSet\": {\n      \"count\": 9,\n      \"offset\": 0,\n      \"limit\": 10,\n      \"total\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c9e2afd-dcfd-4a30-a00d-f8a800b91d52",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "lgi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "056bd28b-2d84-452e-abc6-3bc429fb8405",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "lgi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97f6446f-8d84-4253-8e79-4e46c769c60f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "lgi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b71ab6db-8d04-4e93-9584-9525dd0d0771",
+          "name": "Create new maintainer",
+          "request": {
+            "name": "Create new maintainer",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"homepage\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0da42a8-3ca7-40f6-87e0-54edc9d3a098",
+              "name": "Maintainer successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"lgi\",\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9f1445f-1542-4857-8d5f-7834c27ae540",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"lgi\",\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4593cc61-58a1-40f2-a729-7294bc2740c1",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"lgi\",\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d1c4020-9c93-4140-ad25-9f1030ecd99a",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"lgi\",\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85c8cc62-beb4-4e2c-93e8-0dc607166fef",
+          "name": "Returns details of the specified maintainer",
+          "request": {
+            "name": "Returns details of the specified maintainer",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Code of the requested maintainer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dd492b4-7377-4378-9c21-d559c91c98ec",
+              "name": "Requested maintainer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Code of the requested maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"lgi\",\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae4d8d41-85e8-4e94-93d8-3a8574e9ff29",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Code of the requested maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e57a5f8-307c-47da-9bcc-83315f6eb97e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Code of the requested maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33958aff-0d62-4d10-8069-760229958ff4",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Code of the requested maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4302ba1-9691-4d48-9199-55cc1218bc50",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Code of the requested maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ef600ce-e3ba-4864-8213-fa042286912f",
+          "name": "Update details of the specified maintainer",
+          "request": {
+            "name": "Update details of the specified maintainer",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) code of the maintainer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"homepage\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc8cec44-34fe-4ae8-b6a0-8c9ea2b46193",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc6a9555-e304-41ff-8412-7f1dfad80e61",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3ba485f-9a24-4c76-a7f0-a598b7fff387",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9ae5a18-0f85-4ea2-b05b-03632866ab0d",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Liberty Global\",\n  \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n  \"homepage\": \"https://www.libertyglobal.com\",\n  \"email\": \"developer@libertyglobal.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5002333-e077-4f23-91e5-2b17562677a4",
+          "name": "Delete the specified maintainer",
+          "request": {
+            "name": "Delete the specified maintainer",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) code of the delete maintainer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70269762-f9ec-4e27-aa1c-93eabc3ad67f",
+              "name": "Maintainer successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the delete maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d93c9fbc-9c22-48e8-9a0c-a7bfe2e84722",
+              "name": "Access denied. The requestor is not allowed to delete the maintainer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the delete maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75b95e8f-5bfd-4c3e-a920-86707632d7f6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the delete maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8f4ada1-1d00-4dfa-936d-7171bcef206d",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the delete maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c2345a2-c562-4f0f-b885-37b8fdff3ebe",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) code of the delete maintainer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a608437-f7c4-4a1f-b2fe-3bb27e446bb4",
+          "name": "Returns paginated list of applications from the maintainer",
+          "request": {
+            "name": "Returns paginated list of applications from the maintainer",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Application name (pattern)"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "Application description (pattern)"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Searched version"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Application type"
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Running platform"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Application category"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The number of items to skip before starting to collect the result set"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of items to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Maintainer code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bc49517-3896-4fab-8702-c7c823460cf0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applications\": [\n    {\n      \"category\": \"application\",\n      \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n      \"id\": \"com.libertyglobal.app.awesome\",\n      \"name\": \"Awesome Application\",\n      \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n      \"type\": \"application/vnd.rdk-app.dac.native\",\n      \"version\": \"1.2.3\",\n      \"visible\": true,\n      \"description\": \"This is Awesome App\",\n      \"size\": 10000000,\n      \"localization\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"encryption\": false,\n      \"preferred\": false\n    },\n    {\n      \"category\": \"application\",\n      \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n      \"id\": \"com.libertyglobal.app.awesome\",\n      \"name\": \"Awesome Application\",\n      \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n      \"type\": \"application/vnd.rdk-app.dac.native\",\n      \"version\": \"1.2.3\",\n      \"visible\": true,\n      \"description\": \"This is Awesome App\",\n      \"size\": 10000000,\n      \"localization\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"encryption\": false,\n      \"preferred\": false\n    }\n  ],\n  \"meta\": {\n    \"resultSet\": {\n      \"count\": 9,\n      \"offset\": 0,\n      \"limit\": 10,\n      \"total\": 9\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a7e8f24-5a00-47a1-8185-f1ef42e855df",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "432c3d50-5f8f-41b5-8126-fd355cd1af2e",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ae2139d-df32-46b4-a1f8-72bf297fdbc2",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "you.i"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Awesome application"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.2.3"
+                    },
+                    {
+                      "key": "type",
+                      "value": "application/vnd.rdk-app.dac.lightning"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "arm:v7:linux"
+                    },
+                    {
+                      "key": "category",
+                      "value": "application"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "298e6164-42d7-4b54-97fe-0e859ab8107b",
+          "name": "Create new application/version",
+          "request": {
+            "name": "Create new application/version",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Maintainer code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"header\": {\n    \"category\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"ociImageUrl\": \"<string>\",\n    \"type\": \"<string>\",\n    \"version\": \"<string>\",\n    \"visible\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"size\": \"<integer>\",\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"<string>\",\n      \"os\": \"<string>\",\n      \"variant\": \"<string>\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"<string>\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"<string>\",\n      \"cache\": \"<string>\"\n    },\n    \"features\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"required\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb941f05-bb2a-400a-a887-286dcc97f308",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "375dee66-78e6-4d8e-8cc8-f9ac80e00174",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1e663f0-eab9-4899-8f9b-be07ec8e187c",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69209cc1-e2c4-4815-ab3f-357d06bf8af3",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "779984cd-f115-487f-ad28-b7413a957b41",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"languageCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef178e3c-63b0-40f4-960b-4955a35a16ea",
+          "name": "Replace the contents of the specified application/version",
+          "request": {
+            "name": "Replace the contents of the specified application/version",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode",
+                "apps",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Maintainer code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"header\": {\n    \"category\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"name\": \"<string>\",\n    \"ociImageUrl\": \"<string>\",\n    \"type\": \"<string>\",\n    \"visible\": \"<boolean>\",\n    \"description\": \"<string>\",\n    \"size\": \"<integer>\",\n    \"localization\": [\n      {\n        \"languageCode\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"languageCode\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false,\n    \"version\": \"<string>\"\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"<string>\",\n      \"os\": \"<string>\",\n      \"variant\": \"<string>\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"<string>\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"<string>\",\n      \"cache\": \"<string>\"\n    },\n    \"features\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"required\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95891e6b-18b3-46e9-b982-9b260de1580d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      },\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false,\n    \"version\": \"1.2.3\"\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ff8325f-62d5-44e7-852c-b07a9bebeffa",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      },\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false,\n    \"version\": \"1.2.3\"\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "520bc012-3798-4e44-9da7-208ba3959cf1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      },\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false,\n    \"version\": \"1.2.3\"\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23256cce-21d2-4398-98aa-0721f47f2fd3",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"category\": \"application\",\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      },\n      {\n        \"languageCode\": \"nld\",\n        \"name\": \"Geweldige applicatie\",\n        \"description\": \"Dit is een geweldige applicatie\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false,\n    \"version\": \"1.2.3\"\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f2fb054-29eb-46af-a29d-5c1611ac9120",
+          "name": "Returns the details of the specified application/version",
+          "request": {
+            "name": "Returns the details of the specified application/version",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode",
+                "apps",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platformName",
+                  "value": "<string>",
+                  "description": "(Required) Platform name"
+                },
+                {
+                  "disabled": false,
+                  "key": "firmwareVer",
+                  "value": "<string>",
+                  "description": "(Required) Firmware version"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Maintainer code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38e6ac8f-6f8c-4c0f-ace2-0b3dac8fbe0d",
+              "name": "Requested Application details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"category\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"icon\": \"https://libertyglobal.com/s/apps/com.libertyglobal.app.awesome/1.2.3/image/1920x1080/icon.png\",\n    \"id\": \"com.libertyglobal.app.awesome\",\n    \"name\": \"Awesome Application\",\n    \"ociImageUrl\": \"myregistry.local:5000/testing/test-image\",\n    \"type\": \"application/vnd.rdk-app.dac.native\",\n    \"url\": \"https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz\",\n    \"version\": \"1.2.3\",\n    \"visible\": true,\n    \"description\": \"This is Awesome App\",\n    \"size\": 10000000,\n    \"localization\": [\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    ],\n    \"encryption\": false,\n    \"preferred\": false\n  },\n  \"requirements\": {\n    \"platform\": {\n      \"architecture\": \"arm\",\n      \"os\": \"linux\",\n      \"variant\": \"v7\"\n    },\n    \"dependencies\": [\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      },\n      {\n        \"id\": \"com.libertyglobal.service.voice\",\n        \"version\": \"0.3.4\"\n      }\n    ],\n    \"hardware\": {\n      \"ram\": \"512M\",\n      \"dmips\": \"<string>\",\n      \"persistent\": \"60M\",\n      \"cache\": \"200M\"\n    },\n    \"features\": [\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      },\n      {\n        \"name\": \"rdk.api.awc\",\n        \"version\": \"<string>\",\n        \"required\": false\n      }\n    ]\n  },\n  \"maintainer\": {\n    \"code\": \"lgi\",\n    \"name\": \"Liberty Global\",\n    \"address\": \"Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands\",\n    \"homepage\": \"https://www.libertyglobal.com\",\n    \"email\": \"developer@libertyglobal.com\"\n  },\n  \"versions\": [\n    {\n      \"visible\": true,\n      \"version\": \"1.2.3\",\n      \"preferred\": false,\n      \"encryption\": false\n    },\n    {\n      \"visible\": true,\n      \"version\": \"1.2.3\",\n      \"preferred\": false,\n      \"encryption\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42f21970-cd31-4055-ad20-9338625dda18",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ed45bbe-73e0-4b5c-9dd1-4e169127261c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "240958a9-adef-4f48-ae88-9830ccd4670c",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80b6fb08-9999-454b-bd9d-423d9364c25c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platformName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firmwareVer",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER. Value should be set by intermediate proxies/api gateways. Used for authentication/authorization purposes.",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22d12855-2cc8-4064-96ec-9236b4cedeb7",
+          "name": "Delete the specified application/version",
+          "request": {
+            "name": "Delete the specified application/version",
+            "description": {},
+            "url": {
+              "path": [
+                "maintainers",
+                ":maintainerCode",
+                "apps",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "maintainerCode",
+                  "description": "(Required) Maintainer code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                "key": "x-maintainer-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc9df782-6fc6-4c89-b4e6-5abffe01c7c3",
+              "name": "Application/version successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ceaf4474-10c5-43cd-86f4-8491f1de0717",
+              "name": "Access denied. The requestor is not allowed to delete the application",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0203e9af-45be-40a6-9483-8c0d367970af",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5231486-adf3-4c6e-86ee-4b554b648732",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbcfe02b-eca2-424c-a1d4-89faef9bfb59",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maintainers",
+                    ":maintainerCode",
+                    "apps",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "maintainerCode",
+                      "description": "(Required) Maintainer code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) Reverse Domain Notation ID + optional version separated by a colon. If the version is not specified then default latest version is considered"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Identifier of the requesting maintainer, in case the Client is a MAINTAINER",
+                    "key": "x-maintainer-id",
+                    "value": "1234abcd"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c0d7dbfa-7256-400a-890e-b29465c8c200",
+    "name": "ASMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AppStore Metadata Service REST API. MAS API in RDK.",
+      "type": "text/plain"
+    }
+  }
+}
