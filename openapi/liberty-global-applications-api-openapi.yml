@@ -1,0 +1,167 @@
+openapi: 3.2.0
+info:
+  title: Liberty Global Applications API
+  version: 0.0.1
+  description: 'Operations tagged Applications across 2 of this provider''s published API definitions: liberty-global-appstore-bundle-service-openapi.yml, liberty-global-appstore-caching-service-openapi.yml. Each path carries the servers of the definition it was published in.'
+tags:
+- name: Applications
+paths:
+  /applications/{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}:
+    get:
+      tags:
+      - Applications
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: appVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: platformName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: firmwareVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: appBundleName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: x-request-id
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        202:
+          description: Bundle generation request accepted
+        404:
+          description: Application not found in AppStore Metadata Service
+        400:
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}:
+    get:
+      tags:
+      - Applications
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: appVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: platformName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: firmwareVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: appBundleName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: x-request-id
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Requested file
+        202:
+          description: Bundle generation request accepted
+        404:
+          description: Application not found in AppStore Bundle Service
+        400:
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse_2'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse_2'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse_2'
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          required:
+          - details
+          - httpStatusCode
+          - message
+          type: object
+          properties:
+            httpStatusCode:
+              type: integer
+              format: int32
+            message:
+              type: string
+            details:
+              type: string
+            correlationId:
+              type: string
+    ErrorResponse_2:
+      title: ErrorResponse
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          required:
+          - details
+          - httpStatusCode
+          - message
+          type: object
+          properties:
+            httpStatusCode:
+              type: integer
+              format: int32
+            message:
+              type: string
+            details:
+              type: string
+x-refined-from:
+- liberty-global-appstore-bundle-service-openapi.yml
+- liberty-global-appstore-caching-service-openapi.yml
