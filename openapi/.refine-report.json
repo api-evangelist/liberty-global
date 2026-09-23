@@ -1,0 +1,33 @@
+{
+  "provider": "liberty-global",
+  "sources": [
+    "_original/liberty-global-appstore-bundle-service-openapi.yml",
+    "_original/liberty-global-appstore-caching-service-openapi.yml",
+    "_original/liberty-global-appstore-metadata-service-openapi.yml"
+  ],
+  "outputs": [
+    "liberty-global-applications-api-openapi.yml",
+    "liberty-global-maintainer-api-openapi.yml",
+    "liberty-global-stb-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "liberty-global-appstore-bundle-service-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "liberty-global-appstore-bundle-service-openapi.yml: declared missing tag: Applications",
+    "liberty-global-appstore-caching-service-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "liberty-global-appstore-caching-service-openapi.yml: declared missing tag: Applications",
+    "liberty-global-appstore-metadata-service-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "liberty-global-appstore-metadata-service-openapi.yml: declared missing tag: Maintainer",
+    "liberty-global-appstore-metadata-service-openapi.yml: declared missing tag: STB",
+    "tag 'Applications' spans 2 source specs (liberty-global-appstore-bundle-service-openapi.yml, liberty-global-appstore-caching-service-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "liberty-global-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "liberty-global-maintainer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "liberty-global-stb-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

@@ -58,6 +58,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      summary: Get applications by app id by app version by platform name by firmware version…
+      x-summary-source: derived
+      operationId: getApplicationsByAppIdByAppVersionByPlatformNameByFirmwareVersionByAppBundleName
+      x-operation-id-source: derived
   /{appId}/{appVersion}/{platformName}/{firmwareVersion}/{appBundleName}:
     get:
       tags:
@@ -118,6 +122,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse_2'
+      summary: Get by app id by app version by platform name by firmware version by app bundle…
+      x-summary-source: derived
+      operationId: getByAppIdByAppVersionByPlatformNameByFirmwareVersionByAppBundleName
+      x-operation-id-source: derived
 components:
   schemas:
     ErrorResponse:

@@ -150,31 +150,72 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Meta:
-      type: object
-      properties:
-        resultSet:
-          $ref: '#/components/schemas/ResultSetMeta'
-    Dependency:
+    Platform:
       type: object
       required:
-      - id
+      - architecture
+      - os
       properties:
-        id:
+        architecture:
           type: string
-          description: ID/Package name in Reverse Domain Notation
-          example: com.libertyglobal.service.voice
+          description: Architecture (eg. arm, mips, x86, amd64, web)
+          example: arm
+        variant:
+          type: string
+          description: Variant (eg. v7, v8a)
+          example: v7
+        os:
+          type: string
+          description: OS (eg. linux, all)
+          example: linux
+    Localization:
+      type: object
+      required:
+      - languageCode
+      - name
+      properties:
+        languageCode:
+          type: string
+          description: The ISO 639-2 three character language code
+          example: nld
+        name:
+          type: string
+          description: Application name in selected language (UTF-8)
+          example: Geweldige applicatie
+        description:
+          type: string
+          description: Application description in selected language (UTF-8)
+          example: Dit is een geweldige applicatie
+    StbVersions:
+      type: array
+      description: semantically sorted versions of the application
+      items:
+        $ref: '#/components/schemas/StbVersion'
+    StbVersion:
+      type: object
+      properties:
         version:
           type: string
-          description: Package version
-          example: 0.3.4
-    ErrorResponse:
+          description: Version code
+          example: 1.2.3
+    StbSingleApplicationHeader:
+      allOf:
+      - $ref: '#/components/schemas/StbApplicationHeader'
+      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
+    StbApplicationDetails:
       type: object
       required:
-      - message
+      - header
+      - requirements
       properties:
-        message:
-          type: string
+        header:
+          $ref: '#/components/schemas/StbSingleApplicationHeader'
+        requirements:
+          $ref: '#/components/schemas/Requirements'
+        maintainer:
+          $ref: '#/components/schemas/Maintainer'
+        versions:
+          $ref: '#/components/schemas/StbVersions'
     Category:
       type: string
       enum:
@@ -184,25 +225,6 @@ components:
       - resource
       - plugin
       description: Application category
-    ResultSetMeta:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of items in the current result set
-          example: 9
-        offset:
-          type: integer
-          description: Number of skipped items
-          example: 0
-        limit:
-          type: integer
-          description: Maximum number of items in the current result set
-          example: 10
-        total:
-          type: integer
-          description: Number of items that match the search criteria.
-          example: 9
     Maintainer:
       type: object
       required:
@@ -229,33 +251,86 @@ components:
           type: string
           description: Maintainer's email address
           example: developer@libertyglobal.com
-    StbApplicationsList:
-      type: object
-      properties:
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/StbApplicationHeader'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Platform:
+    Requirements:
       type: object
       required:
-      - architecture
-      - os
+      - platform
       properties:
-        architecture:
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+        platform:
+          $ref: '#/components/schemas/Platform'
+        hardware:
+          $ref: '#/components/schemas/Hardware'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+    ResultSetMeta:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of items in the current result set
+          example: 9
+        offset:
+          type: integer
+          description: Number of skipped items
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of items in the current result set
+          example: 10
+        total:
+          type: integer
+          description: Number of items that match the search criteria.
+          example: 9
+    Dependency:
+      type: object
+      required:
+      - id
+      properties:
+        id:
           type: string
-          description: Architecture (eg. arm, mips, x86, amd64, web)
-          example: arm
-        variant:
+          description: ID/Package name in Reverse Domain Notation
+          example: com.libertyglobal.service.voice
+        version:
           type: string
-          description: Variant (eg. v7, v8a)
-          example: v7
-        os:
+          description: Package version
+          example: 0.3.4
+    Meta:
+      type: object
+      properties:
+        resultSet:
+          $ref: '#/components/schemas/ResultSetMeta'
+    AppicationHeaderGeneratedAttributes:
+      type: object
+      required:
+      - url
+      properties:
+        url:
           type: string
-          description: OS (eg. linux, all)
-          example: linux
+          description: Application url (eg. OCI Container Manifest, external web app url)
+          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
+    StbApplicationHeader:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationHeader'
+      - type: object
+        required:
+        - id
+        - version
+        properties:
+          id:
+            type: string
+            pattern: ^(?!\s*$).+
+            description: Reverse Domain Notation ID
+            example: com.libertyglobal.app.awesome
+          version:
+            type: string
+            description: Application version
+            example: 1.2.3
     Hardware:
       type: object
       properties:
@@ -275,6 +350,37 @@ components:
           type: string
           description: Maximum cache size (G/M/K)
           example: 200M
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    StbApplicationsList:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/StbApplicationHeader'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    Feature:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Feature name
+          example: rdk.api.awc
+        version:
+          type: string
+          description: Feature version
+          example: 2.0
+        required:
+          type: boolean
+          description: Required for run
+          example: false
     ApplicationHeader:
       type: object
       required:
@@ -312,109 +418,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Localization'
-    StbSingleApplicationHeader:
-      allOf:
-      - $ref: '#/components/schemas/StbApplicationHeader'
-      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
-    AppicationHeaderGeneratedAttributes:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          description: Application url (eg. OCI Container Manifest, external web app url)
-          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
-    StbApplicationHeader:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationHeader'
-      - type: object
-        required:
-        - id
-        - version
-        properties:
-          id:
-            type: string
-            pattern: ^(?!\s*$).+
-            description: Reverse Domain Notation ID
-            example: com.libertyglobal.app.awesome
-          version:
-            type: string
-            description: Application version
-            example: 1.2.3
-    StbVersions:
-      type: array
-      description: semantically sorted versions of the application
-      items:
-        $ref: '#/components/schemas/StbVersion'
-    Requirements:
-      type: object
-      required:
-      - platform
-      properties:
-        dependencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dependency'
-        platform:
-          $ref: '#/components/schemas/Platform'
-        hardware:
-          $ref: '#/components/schemas/Hardware'
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/Feature'
-    StbApplicationDetails:
-      type: object
-      required:
-      - header
-      - requirements
-      properties:
-        header:
-          $ref: '#/components/schemas/StbSingleApplicationHeader'
-        requirements:
-          $ref: '#/components/schemas/Requirements'
-        maintainer:
-          $ref: '#/components/schemas/Maintainer'
-        versions:
-          $ref: '#/components/schemas/StbVersions'
-    Feature:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Feature name
-          example: rdk.api.awc
-        version:
-          type: string
-          description: Feature version
-          example: 2.0
-        required:
-          type: boolean
-          description: Required for run
-          example: false
-    StbVersion:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Version code
-          example: 1.2.3
-    Localization:
-      type: object
-      required:
-      - languageCode
-      - name
-      properties:
-        languageCode:
-          type: string
-          description: The ISO 639-2 three character language code
-          example: nld
-        name:
-          type: string
-          description: Application name in selected language (UTF-8)
-          example: Geweldige applicatie
-        description:
-          type: string
-          description: Application description in selected language (UTF-8)
-          example: Dit is een geweldige applicatie
