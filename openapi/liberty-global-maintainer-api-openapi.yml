@@ -479,56 +479,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    MaintainerVersions:
-      type: array
-      description: semantically sorted versions of the application
-      items:
-        $ref: '#/components/schemas/MaintainerVersion'
-    Platform:
-      type: object
-      required:
-      - architecture
-      - os
-      properties:
-        architecture:
-          type: string
-          description: Architecture (eg. arm, mips, x86, amd64, web)
-          example: arm
-        variant:
-          type: string
-          description: Variant (eg. v7, v8a)
-          example: v7
-        os:
-          type: string
-          description: OS (eg. linux, all)
-          example: linux
-    Localization:
-      type: object
-      required:
-      - languageCode
-      - name
-      properties:
-        languageCode:
-          type: string
-          description: The ISO 639-2 three character language code
-          example: nld
-        name:
-          type: string
-          description: Application name in selected language (UTF-8)
-          example: Geweldige applicatie
-        description:
-          type: string
-          description: Application description in selected language (UTF-8)
-          example: Dit is een geweldige applicatie
-    MaintainerApplicationsList:
-      type: object
-      properties:
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/MaintainerApplicationHeader'
-        meta:
-          $ref: '#/components/schemas/Meta'
     MaintainerApplicationHeader:
       allOf:
       - $ref: '#/components/schemas/StbApplicationHeader'
@@ -556,154 +506,29 @@ components:
             description: OCI Image URL
             example: myregistry.local:5000/testing/test-image
             pattern: ^(?!\s*$).+
-    StbVersion:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Version code
-          example: 1.2.3
-    Application:
+    MaintainerVersions:
+      type: array
+      description: semantically sorted versions of the application
+      items:
+        $ref: '#/components/schemas/MaintainerVersion'
+    Platform:
       type: object
       required:
-      - header
-      - requirements
+      - architecture
+      - os
       properties:
-        header:
-          $ref: '#/components/schemas/MaintainerApplicationHeader'
-        requirements:
-          $ref: '#/components/schemas/Requirements'
-    ApplicationHeaderForUpdate:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationHeader'
-      - type: object
-        required:
-        - visible
-        - ociImageUrl
-        properties:
-          visible:
-            type: boolean
-            description: Visible version attribute
-            example: true
-          encryption:
-            type: boolean
-            description: Bundle encryption attribute
-            default: false
-            example: false
-          preferred:
-            type: boolean
-            description: Preferred attribute
-            default: false
-            example: false
-          ociImageUrl:
-            type: string
-            description: OCI Image URL
-            example: myregistry.local:5000/testing/test-image
-            pattern: ^(?!\s*$).+
-          version:
-            type: string
-            description: Version to update (working only with non-latest version)
-            example: 1.2.3
-    MaintainerApplicationDetails:
-      type: object
-      required:
-      - header
-      - requirements
-      properties:
-        header:
-          $ref: '#/components/schemas/MaintainerSingleApplicationHeader'
-        requirements:
-          $ref: '#/components/schemas/Requirements'
-        maintainer:
-          $ref: '#/components/schemas/Maintainer'
-        versions:
-          $ref: '#/components/schemas/MaintainerVersions'
-    Category:
-      type: string
-      enum:
-      - application
-      - dev
-      - service
-      - resource
-      - plugin
-      description: Application category
-    Maintainer:
-      type: object
-      required:
-      - code
-      - name
-      properties:
-        code:
+        architecture:
           type: string
-          description: Maintainer code (eg. lgi)
-          example: lgi
-        name:
+          description: Architecture (eg. arm, mips, x86, amd64, web)
+          example: arm
+        variant:
           type: string
-          description: Maintainer name
-          example: Liberty Global
-        address:
+          description: Variant (eg. v7, v8a)
+          example: v7
+        os:
           type: string
-          description: Maintainer's office address
-          example: Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands
-        homepage:
-          type: string
-          description: Maintainer's homepage
-          example: https://www.libertyglobal.com
-        email:
-          type: string
-          description: Maintainer's email address
-          example: developer@libertyglobal.com
-    MaintainerList:
-      type: object
-      required:
-      - maintainers
-      - meta
-      properties:
-        maintainers:
-          type: array
-          description: list of found maintainers
-          items:
-            $ref: '#/components/schemas/Maintainer'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Requirements:
-      type: object
-      required:
-      - platform
-      properties:
-        dependencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dependency'
-        platform:
-          $ref: '#/components/schemas/Platform'
-        hardware:
-          $ref: '#/components/schemas/Hardware'
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/Feature'
-    MaintainerVersion:
-      allOf:
-      - $ref: '#/components/schemas/StbVersion'
-      - type: object
-        required:
-        - visible
-        properties:
-          visible:
-            type: boolean
-            description: Visible version attribute
-            example: true
-          preferred:
-            type: boolean
-            description: Preferred attribute
-            default: false
-            example: false
-          encryption:
-            type: boolean
-            description: Encryption attribute
-            default: false
-            example: false
+          description: OS (eg. linux, all)
+          example: linux
     ResultSetMeta:
       type: object
       properties:
@@ -723,79 +548,47 @@ components:
           type: integer
           description: Number of items that match the search criteria.
           example: 9
-    Dependency:
+    Feature:
       type: object
-      required:
-      - id
       properties:
-        id:
+        name:
           type: string
-          description: ID/Package name in Reverse Domain Notation
-          example: com.libertyglobal.service.voice
+          description: Feature name
+          example: rdk.api.awc
         version:
           type: string
-          description: Package version
-          example: 0.3.4
-    Meta:
-      type: object
-      properties:
-        resultSet:
-          $ref: '#/components/schemas/ResultSetMeta'
-    AppicationHeaderGeneratedAttributes:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          description: Application url (eg. OCI Container Manifest, external web app url)
-          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
-    StbApplicationHeader:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationHeader'
-      - type: object
+          description: Feature version
+          example: 2.0
         required:
-        - id
-        - version
-        properties:
-          id:
-            type: string
-            pattern: ^(?!\s*$).+
-            description: Reverse Domain Notation ID
-            example: com.libertyglobal.app.awesome
-          version:
-            type: string
-            description: Application version
-            example: 1.2.3
-    Hardware:
-      type: object
-      properties:
-        ram:
-          type: string
-          description: Minimum RAM (G/M/K) (eg. 512M)
-          example: 512M
-        dmips:
-          type: string
-          description: Minimum DMIPS (eg. 3000)
-          example: 2000
-        persistent:
-          type: string
-          description: Persistent Storage (G/M/K)
-          example: 60M
-        cache:
-          type: string
-          description: Maximum cache size (G/M/K)
-          example: 200M
-    ApplicationForUpdate:
+          type: boolean
+          description: Required for run
+          example: false
+    Application:
       type: object
       required:
       - header
       - requirements
       properties:
         header:
-          $ref: '#/components/schemas/ApplicationHeaderForUpdate'
+          $ref: '#/components/schemas/MaintainerApplicationHeader'
         requirements:
           $ref: '#/components/schemas/Requirements'
+    StbVersion:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Version code
+          example: 1.2.3
+    MaintainerSingleApplicationHeader:
+      allOf:
+      - $ref: '#/components/schemas/MaintainerApplicationHeader'
+      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
+    Meta:
+      type: object
+      properties:
+        resultSet:
+          $ref: '#/components/schemas/ResultSetMeta'
     MaintainerForUpdate:
       type: object
       properties:
@@ -815,28 +608,15 @@ components:
           type: string
           description: Maintainer's email address
           example: developer@libertyglobal.com
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    Feature:
+    MaintainerApplicationsList:
       type: object
       properties:
-        name:
-          type: string
-          description: Feature name
-          example: rdk.api.awc
-        version:
-          type: string
-          description: Feature version
-          example: 2.0
-        required:
-          type: boolean
-          description: Required for run
-          example: false
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/MaintainerApplicationHeader'
+        meta:
+          $ref: '#/components/schemas/Meta'
     ApplicationHeader:
       type: object
       required:
@@ -874,7 +654,227 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Localization'
-    MaintainerSingleApplicationHeader:
+    ApplicationForUpdate:
+      type: object
+      required:
+      - header
+      - requirements
+      properties:
+        header:
+          $ref: '#/components/schemas/ApplicationHeaderForUpdate'
+        requirements:
+          $ref: '#/components/schemas/Requirements'
+    Maintainer:
+      type: object
+      required:
+      - code
+      - name
+      properties:
+        code:
+          type: string
+          description: Maintainer code (eg. lgi)
+          example: lgi
+        name:
+          type: string
+          description: Maintainer name
+          example: Liberty Global
+        address:
+          type: string
+          description: Maintainer's office address
+          example: Liberty Global B.V., Boeing Avenue 53, 1119 PE Schiphol Rijk, The Netherlands
+        homepage:
+          type: string
+          description: Maintainer's homepage
+          example: https://www.libertyglobal.com
+        email:
+          type: string
+          description: Maintainer's email address
+          example: developer@libertyglobal.com
+    Hardware:
+      type: object
+      properties:
+        ram:
+          type: string
+          description: Minimum RAM (G/M/K) (eg. 512M)
+          example: 512M
+        dmips:
+          type: string
+          description: Minimum DMIPS (eg. 3000)
+          example: 2000
+        persistent:
+          type: string
+          description: Persistent Storage (G/M/K)
+          example: 60M
+        cache:
+          type: string
+          description: Maximum cache size (G/M/K)
+          example: 200M
+    ErrorResponse:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    Category:
+      type: string
+      enum:
+      - application
+      - dev
+      - service
+      - resource
+      - plugin
+      description: Application category
+    ApplicationHeaderForUpdate:
       allOf:
-      - $ref: '#/components/schemas/MaintainerApplicationHeader'
-      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
+      - $ref: '#/components/schemas/ApplicationHeader'
+      - type: object
+        required:
+        - visible
+        - ociImageUrl
+        properties:
+          visible:
+            type: boolean
+            description: Visible version attribute
+            example: true
+          encryption:
+            type: boolean
+            description: Bundle encryption attribute
+            default: false
+            example: false
+          preferred:
+            type: boolean
+            description: Preferred attribute
+            default: false
+            example: false
+          ociImageUrl:
+            type: string
+            description: OCI Image URL
+            example: myregistry.local:5000/testing/test-image
+            pattern: ^(?!\s*$).+
+          version:
+            type: string
+            description: Version to update (working only with non-latest version)
+            example: 1.2.3
+    AppicationHeaderGeneratedAttributes:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          description: Application url (eg. OCI Container Manifest, external web app url)
+          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
+    MaintainerApplicationDetails:
+      type: object
+      required:
+      - header
+      - requirements
+      properties:
+        header:
+          $ref: '#/components/schemas/MaintainerSingleApplicationHeader'
+        requirements:
+          $ref: '#/components/schemas/Requirements'
+        maintainer:
+          $ref: '#/components/schemas/Maintainer'
+        versions:
+          $ref: '#/components/schemas/MaintainerVersions'
+    MaintainerVersion:
+      allOf:
+      - $ref: '#/components/schemas/StbVersion'
+      - type: object
+        required:
+        - visible
+        properties:
+          visible:
+            type: boolean
+            description: Visible version attribute
+            example: true
+          preferred:
+            type: boolean
+            description: Preferred attribute
+            default: false
+            example: false
+          encryption:
+            type: boolean
+            description: Encryption attribute
+            default: false
+            example: false
+    MaintainerList:
+      type: object
+      required:
+      - maintainers
+      - meta
+      properties:
+        maintainers:
+          type: array
+          description: list of found maintainers
+          items:
+            $ref: '#/components/schemas/Maintainer'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    Localization:
+      type: object
+      required:
+      - languageCode
+      - name
+      properties:
+        languageCode:
+          type: string
+          description: The ISO 639-2 three character language code
+          example: nld
+        name:
+          type: string
+          description: Application name in selected language (UTF-8)
+          example: Geweldige applicatie
+        description:
+          type: string
+          description: Application description in selected language (UTF-8)
+          example: Dit is een geweldige applicatie
+    Requirements:
+      type: object
+      required:
+      - platform
+      properties:
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+        platform:
+          $ref: '#/components/schemas/Platform'
+        hardware:
+          $ref: '#/components/schemas/Hardware'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+    Dependency:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: ID/Package name in Reverse Domain Notation
+          example: com.libertyglobal.service.voice
+        version:
+          type: string
+          description: Package version
+          example: 0.3.4
+    StbApplicationHeader:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationHeader'
+      - type: object
+        required:
+        - id
+        - version
+        properties:
+          id:
+            type: string
+            pattern: ^(?!\s*$).+
+            description: Reverse Domain Notation ID
+            example: com.libertyglobal.app.awesome
+          version:
+            type: string
+            description: Application version
+            example: 1.2.3
