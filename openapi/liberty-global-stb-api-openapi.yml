@@ -150,52 +150,11 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Dependency:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: ID/Package name in Reverse Domain Notation
-          example: com.libertyglobal.service.voice
-        version:
-          type: string
-          description: Package version
-          example: 0.3.4
-    ErrorResponse:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    StbApplicationDetails:
-      type: object
-      required:
-      - header
-      - requirements
-      properties:
-        header:
-          $ref: '#/components/schemas/StbSingleApplicationHeader'
-        requirements:
-          $ref: '#/components/schemas/Requirements'
-        maintainer:
-          $ref: '#/components/schemas/Maintainer'
-        versions:
-          $ref: '#/components/schemas/StbVersions'
     Meta:
       type: object
       properties:
         resultSet:
           $ref: '#/components/schemas/ResultSetMeta'
-    StbVersion:
-      type: object
-      properties:
-        version:
-          type: string
-          description: Version code
-          example: 1.2.3
     ResultSetMeta:
       type: object
       properties:
@@ -215,42 +174,33 @@ components:
           type: integer
           description: Number of items that match the search criteria.
           example: 9
-    AppicationHeaderGeneratedAttributes:
+    Platform:
       type: object
       required:
-      - url
+      - architecture
+      - os
       properties:
-        url:
+        architecture:
           type: string
-          description: Application url (eg. OCI Container Manifest, external web app url)
-          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
-    StbVersions:
-      type: array
-      description: semantically sorted versions of the application
-      items:
-        $ref: '#/components/schemas/StbVersion'
-    Localization:
-      type: object
-      required:
-      - languageCode
-      - name
-      properties:
-        languageCode:
+          description: Architecture (eg. arm, mips, x86, amd64, web)
+          example: arm
+        variant:
           type: string
-          description: The ISO 639-2 three character language code
-          example: nld
-        name:
+          description: Variant (eg. v7, v8a)
+          example: v7
+        os:
           type: string
-          description: Application name in selected language (UTF-8)
-          example: Geweldige applicatie
-        description:
-          type: string
-          description: Application description in selected language (UTF-8)
-          example: Dit is een geweldige applicatie
-    StbSingleApplicationHeader:
-      allOf:
-      - $ref: '#/components/schemas/StbApplicationHeader'
-      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
+          description: OS (eg. linux, all)
+          example: linux
+    Category:
+      type: string
+      enum:
+      - application
+      - dev
+      - service
+      - resource
+      - plugin
+      description: Application category
     Requirements:
       type: object
       required:
@@ -277,6 +227,52 @@ components:
             $ref: '#/components/schemas/StbApplicationHeader'
         meta:
           $ref: '#/components/schemas/Meta'
+    Localization:
+      type: object
+      required:
+      - languageCode
+      - name
+      properties:
+        languageCode:
+          type: string
+          description: The ISO 639-2 three character language code
+          example: nld
+        name:
+          type: string
+          description: Application name in selected language (UTF-8)
+          example: Geweldige applicatie
+        description:
+          type: string
+          description: Application description in selected language (UTF-8)
+          example: Dit is een geweldige applicatie
+    Hardware:
+      type: object
+      properties:
+        ram:
+          type: string
+          description: Minimum RAM (G/M/K) (eg. 512M)
+          example: 512M
+        dmips:
+          type: string
+          description: Minimum DMIPS (eg. 3000)
+          example: 2000
+        persistent:
+          type: string
+          description: Persistent Storage (G/M/K)
+          example: 60M
+        cache:
+          type: string
+          description: Maximum cache size (G/M/K)
+          example: 200M
+    StbVersions:
+      type: array
+      description: semantically sorted versions of the application
+      items:
+        $ref: '#/components/schemas/StbVersion'
+    StbSingleApplicationHeader:
+      allOf:
+      - $ref: '#/components/schemas/StbApplicationHeader'
+      - $ref: '#/components/schemas/AppicationHeaderGeneratedAttributes'
     Maintainer:
       type: object
       required:
@@ -303,21 +299,15 @@ components:
           type: string
           description: Maintainer's email address
           example: developer@libertyglobal.com
-    Feature:
+    AppicationHeaderGeneratedAttributes:
       type: object
+      required:
+      - url
       properties:
-        name:
+        url:
           type: string
-          description: Feature name
-          example: rdk.api.awc
-        version:
-          type: string
-          description: Feature version
-          example: 2.0
-        required:
-          type: boolean
-          description: Required for run
-          example: false
+          description: Application url (eg. OCI Container Manifest, external web app url)
+          example: https://$SERVER/com.libertyglobal.app.awesome/1.2.3/cascadelake/502.54.1/com.libertyglobal.app.awesome_1.2.3_cascadelake_502.54.1.tar.gz
     StbApplicationHeader:
       allOf:
       - $ref: '#/components/schemas/ApplicationHeader'
@@ -335,34 +325,26 @@ components:
             type: string
             description: Application version
             example: 1.2.3
-    Category:
-      type: string
-      enum:
-      - application
-      - dev
-      - service
-      - resource
-      - plugin
-      description: Application category
-    Hardware:
+    StbVersion:
       type: object
       properties:
-        ram:
+        version:
           type: string
-          description: Minimum RAM (G/M/K) (eg. 512M)
-          example: 512M
-        dmips:
+          description: Version code
+          example: 1.2.3
+    Dependency:
+      type: object
+      required:
+      - id
+      properties:
+        id:
           type: string
-          description: Minimum DMIPS (eg. 3000)
-          example: 2000
-        persistent:
+          description: ID/Package name in Reverse Domain Notation
+          example: com.libertyglobal.service.voice
+        version:
           type: string
-          description: Persistent Storage (G/M/K)
-          example: 60M
-        cache:
-          type: string
-          description: Maximum cache size (G/M/K)
-          example: 200M
+          description: Package version
+          example: 0.3.4
     ApplicationHeader:
       type: object
       required:
@@ -400,21 +382,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Localization'
-    Platform:
+    ErrorResponse:
       type: object
       required:
-      - architecture
-      - os
+      - message
       properties:
-        architecture:
+        message:
           type: string
-          description: Architecture (eg. arm, mips, x86, amd64, web)
-          example: arm
-        variant:
+    Feature:
+      type: object
+      properties:
+        name:
           type: string
-          description: Variant (eg. v7, v8a)
-          example: v7
-        os:
+          description: Feature name
+          example: rdk.api.awc
+        version:
           type: string
-          description: OS (eg. linux, all)
-          example: linux
+          description: Feature version
+          example: 2.0
+        required:
+          type: boolean
+          description: Required for run
+          example: false
+    StbApplicationDetails:
+      type: object
+      required:
+      - header
+      - requirements
+      properties:
+        header:
+          $ref: '#/components/schemas/StbSingleApplicationHeader'
+        requirements:
+          $ref: '#/components/schemas/Requirements'
+        maintainer:
+          $ref: '#/components/schemas/Maintainer'
+        versions:
+          $ref: '#/components/schemas/StbVersions'
