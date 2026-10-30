@@ -1,4 +1,4 @@
-# Liberty Global (liberty-global)
+# Liberty Global
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,77 +64,120 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Liberty Global is a London-headquartered converged connectivity group that owns and operates fixed-broadband and mobile networks across Europe, mostly through joint ventures rather than under its own brand — Virgin Media O2 in the United Kingdom (50/50 with Telefonica), VodafoneZiggo in the Netherlands (50/50 with Vodafone Group), Telenet in Belgium, and Virgin Media Ireland — serving roughly 80 million connections over fibre-rich broadband and 5G. It sits in the value chain as a network owner and holding company, not as a developer-facing platform.
+Liberty Global is a London-headquartered converged connectivity group that owns and operates fixed-broadband and mobile networks across Europe, mostly through joint ventures rather than under its own brand — Virgin Media O2 in the United Kingdom (50/50 with Telefonica), VodafoneZiggo in the Netherlands (50/50 with Vodafone Group), Telenet in Belgium, and Virgin Media Ireland — serving roughly 80 million connections over fibre-rich broadband and 5G. It sits in the value chain as a network owner and holding company, not as a developer-facing platform. Liberty Global has been a GSMA Open Gateway participant since the initiative launched at MWC 2023 and announced a Network-as-a-Service framework with AWS in February 2024 built on CAMARA standard APIs, but its API posture toward developers is partner-gated and indirect: there is no first-party developer portal on libertyglobal.com — the developer.libertyglobal.com hostname advertised on its own GitHub organisation profile does not resolve — and every callable CAMARA network API reaches the market through the operating joint ventures (Virgin Media O2's UK KYC Age Verify, KYC Tenure and SIM Swap APIs; VodafoneZiggo's four Dutch network APIs) or through the operators' shared channels, never from the parent. The only OpenAPI definitions Liberty Global itself publishes are the Apache-2.0 RDK App Store service specs in its public GitHub organisation.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/liberty-global/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/liberty-global/refs/heads/main/apis.yml)
+**Areas:** Telecommunications · United Kingdom · Broadband · Fixed Broadband · Mobile Network Operator · Network APIs · CAMARA · Open Gateway · 5G · Europe · Set-Top Box · RDK
 
-## The Honest API Posture
+## Liberty Global on APIs.io
 
-There is no first-party developer portal. Every developer hostname probed on 2026-07-25 failed to resolve — `developer.libertyglobal.com`, `developers.libertyglobal.com`, `docs.libertyglobal.com`, `api.libertyglobal.com`, `opengateway.libertyglobal.com`, `developers.opengateway.libertyglobal.com` — and `/developer`, `/developers`, `/api` and `/opengateway` on the corporate site all return HTTP 404.
+Everything profiled for Liberty Global is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/liberty-global/](https://apis.io/providers/liberty-global/)** — or go straight to one of the APIs or properties below.
 
-The sharpest artifact is one Liberty Global publishes about itself: its own GitHub organisation profile lists `https://developer.libertyglobal.com` as its blog and `developers@libertyglobal.com` as its contact. That hostname is NXDOMAIN. The company still points the world at a developer programme that no longer exists.
+### APIs (3)
 
-## CAMARA and GSMA Open Gateway
+- [Liberty Global Applications API](https://apis.io/apis/liberty-global/liberty-global-applications-api/) — The Applications API from Liberty Global — 2 operation(s) for applications.
+- [Liberty Global Maintainer API](https://apis.io/apis/liberty-global/liberty-global-maintainer-api/) — The Maintainer API from Liberty Global — 4 operation(s) for maintainer.
+- [Liberty Global STB API](https://apis.io/apis/liberty-global/liberty-global-stb-api/) — The STB API from Liberty Global — 2 operation(s) for stb.
 
-Liberty Global is a genuine GSMA Open Gateway participant — part of the initiative since its launch at MWC 2023 — and its February 2024 Network-as-a-Service framework with AWS explicitly commits to CAMARA standard APIs. But nothing is callable from the parent. Every CAMARA API with real evidence behind it ships through an operating joint venture:
+### Published properties
 
-- **SIM Swap** — Virgin Media O2 (UK) and VodafoneZiggo (NL)
-- **Number Verification** — VodafoneZiggo (NL)
-- **KYC Age Verification** — Virgin Media O2 (UK), commercially launched with BT, EE and Vodafone on 2025-09-23 under the UK Online Safety Act
-- **KYC Tenure** — Virgin Media O2 (UK), same launch
-- **KYC Match** — Virgin Media O2 (UK), announced for end of 2025
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Liberty Global does not appear on Aduna's operator roster; its JV parents Telefonica and Vodafone do. Any aggregator reach is inherited through the partner, not held directly. No TM Forum Open API conformance, no public NEF/SCEF surface, no network-slicing or edge/MEC API, no webhooks, no AsyncAPI, no public Postman workspace, and no first-party API SDKs were found. CIBA appears nowhere.
+#### MCP servers (1)
 
-## APIs
+Model Context Protocol servers that expose the API to agents.
 
-The only OpenAPI definitions Liberty Global itself publishes are three Apache-2.0 RDK set-top-box App Store component specs in its public GitHub organisation, copyright Liberty Global Technology Services BV. All three were fetched verbatim and parse as valid OpenAPI 3.0. None declares a `servers` block or a security scheme — they describe operator-hosted services, not a consumable public API product.
+- [liberty-global-mcp.yml](https://apis.io/servers/liberty-global/liberty-global-mcp-yml/)
 
-### AppStore Metadata Service API
+#### Agentic access (1)
 
-The ASMS (AppStore Metadata Service) REST API — the MAS API in RDK. Manages application metadata and maintainer records for the RDK-based set-top box app store.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://github.com/LibertyGlobal/appstore-metadata-service](https://github.com/LibertyGlobal/appstore-metadata-service)
-- **OpenAPI:** [openapi/liberty-global-appstore-metadata-service-openapi.yml](openapi/liberty-global-appstore-metadata-service-openapi.yml) — OpenAPI 3.0.0, version 0.7.0
-- **Paths:** `/apps`, `/apps/{applicationId}`, `/maintainers`, `/maintainers/{maintainerCode}`, `/maintainers/{maintainerCode}/apps`, `/maintainers/{maintainerCode}/apps/{applicationId}`
+- [Liberty Global Agentic Access](https://apis.io/agentic-access/liberty-global/liberty-global-agentic-access/)
 
-### AppStore Bundle Service API
+#### Collections (3)
 
-Handles the application bundle generation process by interacting with the Bundle Generator and Bundle Cryptor services.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://github.com/LibertyGlobal/appstore-bundle-service](https://github.com/LibertyGlobal/appstore-bundle-service)
-- **OpenAPI:** [openapi/liberty-global-appstore-bundle-service-openapi.yml](openapi/liberty-global-appstore-bundle-service-openapi.yml) — OpenAPI 3.0.1, version 0.0.1
+- [AppStore Bundle Service API](https://apis.io/collections/liberty-global/open-liberty-global-appstore-bundle-service/)
+- [AppStore Caching Service API](https://apis.io/collections/liberty-global/open-liberty-global-appstore-caching-service/)
+- [ASMS API](https://apis.io/collections/liberty-global/open-liberty-global-appstore-metadata-service/)
 
-### AppStore Caching Service API
+#### Overlays (3)
 
-Acts as a caching proxy in front of the AppStore Bundle Service, serving generated application bundles.
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- **Human URL:** [https://github.com/LibertyGlobal/appstore-caching-service](https://github.com/LibertyGlobal/appstore-caching-service)
-- **OpenAPI:** [openapi/liberty-global-appstore-caching-service-openapi.yml](openapi/liberty-global-appstore-caching-service-openapi.yml) — OpenAPI 3.0.1, version 0.0.1
+- [Liberty Global Appstore Bundle Service Overlay](https://apis.io/overlays/liberty-global/liberty-global-appstore-bundle-service-overlay/)
+- [Liberty Global Appstore Caching Service Overlay](https://apis.io/overlays/liberty-global/liberty-global-appstore-caching-service-overlay/)
+- [Liberty Global Appstore Metadata Service Overlay](https://apis.io/overlays/liberty-global/liberty-global-appstore-metadata-service-overlay/)
 
-## Tags
+#### Security (3)
 
-- Telecommunications
-- United Kingdom
-- Broadband
-- Fixed Broadband
-- Mobile Network Operator
-- Network APIs
-- CAMARA
-- Open Gateway
-- 5G
-- Europe
-- Set-Top Box
-- RDK
+Authentication, trust centre, and vulnerability disclosure.
 
-## Links
+- [Liberty Global Authentication](https://apis.io/security/liberty-global/liberty-global-authentication/)
+- [Liberty Global Domain Security](https://apis.io/security/liberty-global/liberty-global-domain-security/)
+- [Liberty Global Vulnerability Disclosure](https://apis.io/security/liberty-global/liberty-global-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.libertyglobal.com/)
-- [GitHub Organization](https://github.com/LibertyGlobal)
-- [LinkedIn](https://www.linkedin.com/company/liberty-global)
-- [News](https://www.libertyglobal.com/news/)
+- [Blog](https://www.libertyglobal.com/news-insights/insights/)
+- [Compliance](https://www.libertyglobal.com/about/corporate-governance/data-privacy-protection/)
+- [Terms of service](https://www.libertyglobal.com/legal-notices/)
+- [Privacy policy](https://www.libertyglobal.com/privacy-and-security-policy/)
+- [GitHub](https://github.com/LibertyGlobal)
 
-## Timestamps
+## API Evangelist rating
 
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
+**Kin Score 37.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 41.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 39.9 |
+| Access clarity | 28.9 |
+
+**Agent readiness 29.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 35.0** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/liberty-global/](https://apis.io/providers/liberty-global/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Liberty Global: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/liberty-global/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
